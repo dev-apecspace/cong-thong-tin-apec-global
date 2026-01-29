@@ -1,0 +1,170 @@
+{
+  "company1": {
+    "summary": "APEC là tập đoàn hàng đầu trong lĩnh vực công nghệ và kinh doanh toàn cầu, với hơn 20 năm kinh nghiệm trong ngành.",
+    "webLink": "https://apec-global.com",
+    "logo": "https://ik.imagekit.io/apec/company/logo.png",
+    "heroImage": "https://ik.imagekit.io/apec/company/hero-banner.jpg",
+    "profileUrl": "https://ik.imagekit.io/apec/company/profile.pdf",
+    "corporateInfo": {
+      "email": "info@apec-global.com",
+      "phone": "+84 (28) 3815 3815",
+      "founded": "2005",
+      "ceo": "Nguyễn Văn Khôi",
+      "hotline": "+84 1900 5959 50"
+    },
+    "legalInfo": {
+      "taxCode": "0300834829",
+      "issuedDate": "15/05/2005",
+      "type": "Công ty cổ phần",
+      "issuedBy": "Sở Kế hoạch và Đầu tư TP.HCM"
+    },
+    "capabilities": [
+      "Tư vấn chiến lược kinh doanh",
+      "Phát triển hạ tầng công nghệ",
+      "Quản lý dự án quốc tế",
+      "Đào tạo và phát triển nhân sự",
+      "Giải pháp digital transformation",
+      "Quản lý chuỗi cung ứng"
+    ]
+  },
+  "company2": {
+    "summary": "Công ty lập trình và phát triển phần mềm hàng đầu, cung cấp giải pháp IT toàn diện cho các doanh nghiệp.",
+    "webLink": "https://company2.com",
+    "logo": "https://ik.imagekit.io/apec/company/company2-logo.png",
+    "heroImage": "https://ik.imagekit.io/apec/company/company2-hero.jpg",
+    "profileUrl": "https://ik.imagekit.io/apec/company/company2-profile.pdf",
+    "corporateInfo": {
+      "email": "contact@company2.com",
+      "phone": "+84 (28) 3815 2222",
+      "founded": "2010",
+      "ceo": "Trần Thị Hương",
+      "hotline": "+84 1900 2222 22"
+    },
+    "legalInfo": {
+      "taxCode": "0300834830",
+      "issuedDate": "20/06/2010",
+      "type": "Công ty cổ phần",
+      "issuedBy": "Sở Kế hoạch và Đầu tư TP.HCM"
+    },
+    "capabilities": [
+      "Phát triển ứng dụng web",
+      "Phát triển ứng dụng di động",
+      "Cloud computing solutions",
+      "AI và Machine Learning",
+      "Big Data analytics",
+      "Cybersecurity services"
+    ]
+  },
+  "company3": {
+    "summary": "Chuyên cung cấp dịch vụ marketing digital và branding cho các thương hiệu lớn tại khu vực Đông Nam Á.",
+    "webLink": "https://company3.com",
+    "logo": "https://ik.imagekit.io/apec/company/company3-logo.png",
+    "heroImage": "https://ik.imagekit.io/apec/company/company3-hero.jpg",
+    "profileUrl": "https://ik.imagekit.io/apec/company/company3-profile.pdf",
+    "corporateInfo": {
+      "email": "hello@company3.com",
+      "phone": "+84 (28) 3815 3333",
+      "founded": "2012",
+      "ceo": "Lê Minh Hạo",
+      "hotline": "+84 1900 3333 33"
+    },
+    "legalInfo": {
+      "taxCode": "0300834831",
+      "issuedDate": "12/03/2012",
+      "type": "Công ty cổ phần",
+      "issuedBy": "Sở Kế hoạch và Đầu tư TP.HCM"
+    },
+    "capabilities": [
+      "Marketing Digital Strategy",
+      "Social Media Management",
+      "Content Creation",
+      "Brand Design",
+      "Video Production",
+      "SEO & SEM Services"
+    ]
+  },
+  "company4": {
+    "summary": "Doanh nghiệp xuất nhập khẩu, kinh doanh các sản phẩm tiêu dùng cao cấp và dịch vụ logistics quốc tế.",
+    "webLink": "https://company4.com",
+    "logo": "https://ik.imagekit.io/apec/company/company4-logo.png",
+    "heroImage": "https://ik.imagekit.io/apec/company/company4-hero.jpg",
+    "profileUrl": "https://ik.imagekit.io/apec/company/company4-profile.pdf",
+    "corporateInfo": {
+      "email": "trade@company4.com",
+      "phone": "+84 (28) 3815 4444",
+      "founded": "2008",
+      "ceo": "Phạm Quang Minh",
+      "hotline": "+84 1900 4444 44"
+    },
+    "legalInfo": {
+      "taxCode": "0300834832",
+      "issuedDate": "05/09/2008",
+      "type": "Công ty cổ phần",
+      "issuedBy": "Sở Kế hoạch và Đầu tư TP.HCM"
+    },
+    "capabilities": [
+      "Import-Export Services",
+      "Customs Clearance",
+      "Logistics Management",
+      "Warehouse Solutions",
+      "Supply Chain Optimization",
+      "International Trading"
+    ]
+  },
+  "company5": {
+    "summary": "Công ty tài chính và bảo hiểm, cung cấp các sản phẩm tài chính toàn diện cho cá nhân và doanh nghiệp.",
+    "webLink": "https://company5.com",
+    "logo": "https://ik.imagekit.io/apec/company/company5-logo.png",
+    "heroImage": "https://ik.imagekit.io/apec/company/company5-hero.jpg",
+    "profileUrl": "https://ik.imagekit.io/apec/company/company5-profile.pdf",
+    "corporateInfo": {
+      "email": "service@company5.com",
+      "phone": "+84 (28) 3815 5555",
+      "founded": "2006",
+      "ceo": "Võ Thị Lan",
+      "hotline": "+84 1900 5555 55"
+    },
+    "legalInfo": {
+      "taxCode": "0300834833",
+      "issuedDate": "10/11/2006",
+      "type": "Công ty cổ phần",
+      "issuedBy": "Sở Kế hoạch và Đầu tư TP.HCM"
+    },
+    "capabilities": [
+      "Sản phẩm bảo hiểm nhân thọ",
+      "Bảo hiểm tài sản",
+      "Tư vấn tài chính",
+      "Quản lý quỹ đầu tư",
+      "Dịch vụ thanh toán",
+      "Giải pháp tài chính doanh nghiệp"
+    ]
+  },
+  "company6": {
+    "summary": "Công ty chuyên đào tạo chuyên nghiệp và phát triển nguồn nhân lực, với chương trình đào tạo quốc tế.",
+    "webLink": "https://company6.com",
+    "logo": "https://ik.imagekit.io/apec/company/company6-logo.png",
+    "heroImage": "https://ik.imagekit.io/apec/company/company6-hero.jpg",
+    "profileUrl": "https://ik.imagekit.io/apec/company/company6-profile.pdf",
+    "corporateInfo": {
+      "email": "training@company6.com",
+      "phone": "+84 (28) 3815 6666",
+      "founded": "2011",
+      "ceo": "Ngô Thị Hương Giang",
+      "hotline": "+84 1900 6666 66"
+    },
+    "legalInfo": {
+      "taxCode": "0300834834",
+      "issuedDate": "18/04/2011",
+      "type": "Công ty cổ phần",
+      "issuedBy": "Sở Kế hoạch và Đầu tư TP.HCM"
+    },
+    "capabilities": [
+      "Đào tạo chuyên nghiệp",
+      "Phát triển kỹ năng lãnh đạo",
+      "Tuyển dụng và nhân sự",
+      "Đào tạo quốc tế",
+      "Tư vấn tổ chức nhân sự",
+      "Quản lý sự nghiệp"
+    ]
+  }
+}

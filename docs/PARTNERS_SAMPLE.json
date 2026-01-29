@@ -1,0 +1,84 @@
+{
+  "partners": [
+    {
+      "id": "partner_001",
+      "name": "Nam Hiền Long",
+      "logo": "https://example.com/partners/nam-hien-long.png",
+      "description": "Nam Hiền Long là đơn vị tài chính hàng đầu trong lĩnh vực gia công phần mềm và giải pháp chuyên đổi số tại Việt Nam, với đội ngũ kỹ sư giàu kinh nghiệm.",
+      "website": "https://namhienlong.vn",
+      "contact_email": "contact@namhienlong.vn",
+      "contact_phone": "+84 28 1234 5678",
+      "display_order": 1
+    },
+    {
+      "id": "partner_002",
+      "name": "APEC BCI",
+      "logo": "https://example.com/partners/apec-bci.png",
+      "description": "APEC BCI - Công ty cấp hạng lớn chuyên cung cấp dịch vụ tài chính và tư vấn kinh doanh.",
+      "website": "https://apecbci.vn",
+      "contact_email": "info@apecbci.vn",
+      "contact_phone": "+84 28 9999 8888",
+      "display_order": 2
+    },
+    {
+      "id": "partner_003",
+      "name": "LIFFECare",
+      "logo": "https://example.com/partners/liffecare.png",
+      "description": "LIFFECare - Nền tảng chăm sóc sức khỏe số hiện đại với công nghệ AI và IoT tiên tiến.",
+      "website": "https://liffecare.com",
+      "contact_email": "support@liffecare.com",
+      "contact_phone": "+84 28 7777 6666",
+      "display_order": 3
+    },
+    {
+      "id": "partner_004",
+      "name": "SUPERAPP",
+      "logo": "https://example.com/partners/superapp.png",
+      "description": "SUPERAPP - Ứng dụng tập hợp dịch vụ mua sắm, thanh toán và giao hàng toàn diện.",
+      "website": "https://superapp.vn",
+      "contact_email": "business@superapp.vn",
+      "contact_phone": "+84 28 5555 4444",
+      "display_order": 4
+    },
+    {
+      "id": "partner_005",
+      "name": "GUARDCAM",
+      "logo": "https://example.com/partners/guardcam.png",
+      "description": "GUARDCAM - Hệ thống giám sát và an ninh thông minh với công nghệ nhận dạng khuôn mặt.",
+      "website": "https://guardcam.vn",
+      "contact_email": "sales@guardcam.vn",
+      "contact_phone": "+84 28 3333 2222",
+      "display_order": 5
+    },
+    {
+      "id": "partner_006",
+      "name": "ECOOP",
+      "logo": "https://example.com/partners/ecoop.png",
+      "description": "ECOOP - Nền tảng e-commerce B2B kết nối các nhà cung cấp và doanh nghiệp thương mại điện tử.",
+      "website": "https://ecoop.com.vn",
+      "contact_email": "partnership@ecoop.com.vn",
+      "contact_phone": "+84 28 1111 0000",
+      "display_order": 6
+    },
+    {
+      "id": "partner_007",
+      "name": "TechVision Solutions",
+      "logo": "https://example.com/partners/techvision.png",
+      "description": "TechVision Solutions - Công ty chuyên về phát triển phần mềm và tư vấn chuyển đổi số cho doanh nghiệp.",
+      "website": "https://techvision.vn",
+      "contact_email": "hello@techvision.vn",
+      "contact_phone": "+84 28 8888 7777",
+      "display_order": 7
+    },
+    {
+      "id": "partner_008",
+      "name": "CloudInnovate",
+      "logo": "https://example.com/partners/cloudinnovate.png",
+      "description": "CloudInnovate - Nhà cung cấp dịch vụ điện toán đám mây và hạ tầng IT cho các tổ chức.",
+      "website": "https://cloudinnovate.asia",
+      "contact_email": "support@cloudinnovate.asia",
+      "contact_phone": "+84 28 6666 5555",
+      "display_order": 8
+    }
+  ]
+}
