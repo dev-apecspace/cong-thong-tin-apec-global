@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Card } from '@/components/ui/card'
 import { Save, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
+import ImageUpload from '../../components/image-upload'
 
 export default function PartnerCreateForm() {
   const router = useRouter()

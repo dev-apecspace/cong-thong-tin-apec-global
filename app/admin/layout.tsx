@@ -79,27 +79,18 @@ export default function AdminLayout({
 
     setIsChanging(true)
     try {
-      const crypto = require('crypto')
-      const hash = (p: string) => crypto.createHash('sha256').update(p).digest('hex')
-      
-      // 1. Kiểm tra mật khẩu cũ
-      const { data: user, error: fetchError } = await supabase
-        .from('user')
-        .select('password_hash')
-        .eq('id', userSession.userId)
-        .single()
+      const response = await fetch('/api/admin/change-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: userSession.userId,
+          currentPassword: passwords.current,
+          newPassword: passwords.new
+        })
+      })
 
-      if (fetchError || user.password_hash !== hash(passwords.current)) {
-        throw new Error('Mật khẩu hiện tại không chính xác')
-      }
-
-      // 2. Cập nhật mật khẩu mới
-      const { error: updateError } = await supabase
-        .from('user')
-        .update({ password_hash: hash(passwords.new) })
-        .eq('id', userSession.userId)
-
-      if (updateError) throw updateError
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.error || 'Lỗi khi đổi mật khẩu')
 
       toast.success('Đã đổi mật khẩu thành công')
       setIsPasswordModalOpen(false)

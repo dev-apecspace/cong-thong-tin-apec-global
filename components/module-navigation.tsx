@@ -131,7 +131,7 @@ export function ModuleNavigation({
     const firstProjectName = module.projects?.[0]?.name;
     const firstDetail = firstProjectName ? module.details?.[firstProjectName] : null;
     if (firstDetail?.externalUrl) {
-      window.location.href = firstDetail.externalUrl;
+      window.open(firstDetail.externalUrl, '_blank');
       return;
     }
 
@@ -140,7 +140,7 @@ export function ModuleNavigation({
       for (const key of Object.keys(module.details)) {
         const d = module.details[key];
         if (d?.externalUrl) {
-          window.location.href = d.externalUrl;
+          window.open(d.externalUrl, '_blank');
           return;
         }
       }

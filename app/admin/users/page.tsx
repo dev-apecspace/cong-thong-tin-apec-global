@@ -93,36 +93,24 @@ export default function UsersPage() {
     }
 
     try {
-      if (editingUser) {
-        // Update user
-        const updateData: any = {
+      const response = await fetch('/api/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: editingUser?.id,
+          email: formData.email,
+          password: formData.password,
           full_name: formData.full_name,
           role: formData.role,
           is_active: formData.is_active,
           permissions: formData.permissions
-        }
-        if (formData.password) {
-          // Lưu ý: Password nên được hash ở API hoặc dùng logic hash sẵn có
-          // Để đơn giản, ta giả định API xử lý hoặc dùng function hash của hệ thống
-          updateData.password_hash = hashPassword(formData.password)
-        }
+        })
+      })
 
-        const { error } = await supabase.from('user').update(updateData).eq('id', editingUser.id)
-        if (error) throw error
-        toast.success('Cập nhật user thành công')
-      } else {
-        // Insert user
-        const { error } = await supabase.from('user').insert([{
-          email: formData.email,
-          password_hash: hashPassword(formData.password),
-          full_name: formData.full_name,
-          role: formData.role,
-          is_active: true,
-          permissions: formData.permissions
-        }])
-        if (error) throw error
-        toast.success('Thêm user thành công')
-      }
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.error || 'Lỗi khi lưu user')
+
+      toast.success(editingUser ? 'Cập nhật thành công' : 'Thêm mới thành công')
       setIsDialogOpen(false)
       fetchUsers()
       resetForm()
@@ -164,12 +152,6 @@ export default function UsersPage() {
       toast.success('Đã xóa user')
       fetchUsers()
     }
-  }
-
-  // Thêm helper function hash mật khẩu cho đồng bộ (giống login API)
-  const hashPassword = (password: string): string => {
-    const crypto = require('crypto')
-    return crypto.createHash('sha256').update(password).digest('hex')
   }
 
   return (
