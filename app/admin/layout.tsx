@@ -11,12 +11,23 @@ import {
   Grid3X3,
   Menu,
   X,
-  Users
+  Users,
+  KeyRound
 } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { toast } from 'sonner'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
+import { createClient } from '@/lib/supabase-client'
 
 export default function AdminLayout({
   children,
@@ -25,7 +36,23 @@ export default function AdminLayout({
 }) {
   const router = useRouter()
   const pathname = usePathname()
+  const supabase = createClient()
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false)
+  const [userSession, setUserSession] = useState<any>(null)
+  
+  // Password change state
+  const [passwords, setPasswords] = useState({
+    current: '',
+    new: '',
+    confirm: ''
+  })
+  const [isChanging, setIsChanging] = useState(false)
+
+  useEffect(() => {
+    const session = localStorage.getItem('admin_session')
+    if (session) setUserSession(JSON.parse(session))
+  }, [])
 
   const handleLogout = async () => {
     // Xóa session từ localStorage
@@ -37,6 +64,51 @@ export default function AdminLayout({
     toast.success('Đã đăng xuất')
     router.push('/admin/login')
     router.refresh()
+  }
+
+  const handleChangePassword = async () => {
+    if (!passwords.current || !passwords.new || !passwords.confirm) {
+      toast.error('Vui lòng nhập đầy đủ thông tin')
+      return
+    }
+
+    if (passwords.new !== passwords.confirm) {
+      toast.error('Mật khẩu mới không khớp')
+      return
+    }
+
+    setIsChanging(true)
+    try {
+      const crypto = require('crypto')
+      const hash = (p: string) => crypto.createHash('sha256').update(p).digest('hex')
+      
+      // 1. Kiểm tra mật khẩu cũ
+      const { data: user, error: fetchError } = await supabase
+        .from('user')
+        .select('password_hash')
+        .eq('id', userSession.userId)
+        .single()
+
+      if (fetchError || user.password_hash !== hash(passwords.current)) {
+        throw new Error('Mật khẩu hiện tại không chính xác')
+      }
+
+      // 2. Cập nhật mật khẩu mới
+      const { error: updateError } = await supabase
+        .from('user')
+        .update({ password_hash: hash(passwords.new) })
+        .eq('id', userSession.userId)
+
+      if (updateError) throw updateError
+
+      toast.success('Đã đổi mật khẩu thành công')
+      setIsPasswordModalOpen(false)
+      setPasswords({ current: '', new: '', confirm: '' })
+    } catch (error: any) {
+      toast.error(error.message || 'Lỗi khi đổi mật khẩu')
+    } finally {
+      setIsChanging(false)
+    }
   }
 
   // Nếu là trang login thì không hiển thị layout admin
@@ -51,6 +123,7 @@ export default function AdminLayout({
     { name: 'Quản lý Dự án', href: '/admin/projects', icon: Layers },
     { name: 'Khối thông tin', href: '/admin/blocks', icon: Grid3X3 },
     { name: 'Quản lý Đối tác', href: '/admin/partners', icon: Users },
+    { name: 'Quản lý User', href: '/admin/users', icon: Users },
   ]
 
   return (
@@ -98,7 +171,15 @@ export default function AdminLayout({
           })}
         </nav>
 
-        <div className="absolute bottom-6 w-full px-4">
+        <div className="absolute bottom-6 w-full px-4 space-y-2">
+          <Button 
+            variant="ghost" 
+            className="w-full justify-start text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-xl"
+            onClick={() => setIsPasswordModalOpen(true)}
+          >
+            <KeyRound className="mr-3 h-5 w-5" />
+            <span className="font-medium">Đổi mật khẩu</span>
+          </Button>
           <Button 
             variant="ghost" 
             className="w-full justify-start text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-xl"
@@ -109,6 +190,60 @@ export default function AdminLayout({
           </Button>
         </div>
       </aside>
+
+      {/* Password Change Dialog */}
+      <Dialog open={isPasswordModalOpen} onOpenChange={setIsPasswordModalOpen}>
+        <DialogContent className="sm:max-w-md rounded-2xl bg-white border-none shadow-xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold flex items-center gap-2">
+              <KeyRound className="h-5 w-5 text-blue-600" />
+              Đổi mật khẩu tài khoản
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="current">Mật khẩu hiện tại</Label>
+              <Input 
+                id="current" 
+                type="password" 
+                value={passwords.current}
+                onChange={e => setPasswords({...passwords, current: e.target.value})}
+                className="rounded-xl border-slate-200 h-11"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="new">Mật khẩu mới</Label>
+              <Input 
+                id="new" 
+                type="password" 
+                value={passwords.new}
+                onChange={e => setPasswords({...passwords, new: e.target.value})}
+                className="rounded-xl border-slate-200 h-11"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="confirm">Xác nhận mật khẩu mới</Label>
+              <Input 
+                id="confirm" 
+                type="password" 
+                value={passwords.confirm}
+                onChange={e => setPasswords({...passwords, confirm: e.target.value})}
+                className="rounded-xl border-slate-200 h-11"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="ghost" onClick={() => setIsPasswordModalOpen(false)} className="rounded-xl">Hủy</Button>
+            <Button 
+              onClick={handleChangePassword} 
+              disabled={isChanging}
+              className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md shadow-blue-200"
+            >
+              {isChanging ? 'Đang xử lý...' : 'Xác nhận đổi'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Main Content */}
       <main className={cn(
