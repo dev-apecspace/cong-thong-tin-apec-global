@@ -22,27 +22,45 @@ export default function ModuleCreateForm({ projects }: { projects: Project[] }) 
   const [loading, setLoading] = useState(false)
   
   const [formData, setFormData] = useState({
+    id: '',
     title: '',
     description: '',
     icon: 'Box',
     route: '',
     display_order: 1,
     is_visible: true,
-    background_image: ''
+    background_image: '',
+    color: '',
+    text_color: '#ffffff',
+    text_color_hover: '#22d3ee'
   })
 
+  const [useCustomColor, setUseCustomColor] = useState(false)
+
   const handleSave = async () => {
-    if (!formData.title.trim() || !formData.route.trim()) {
-      toast.error('Vui lòng nhập tiêu đề và route')
+    if (!formData.id.trim() || !formData.title.trim() || !formData.route.trim()) {
+      toast.error('Vui lòng nhập đầy đủ ID, tiêu đề và route')
+      return
+    }
+
+    // Kiểm tra định dạng ID (chỉ cho phép chữ, số và gạch ngang)
+    if (!/^[a-z0-9-]+$/.test(formData.id)) {
+      toast.error('ID chỉ được chứa chữ thường, số và dấu gạch ngang (ví dụ: phan-anh)')
       return
     }
 
     setLoading(true)
     try {
+      // Đảm bảo color là null nếu không sử dụng màu tùy chỉnh
+      const dataToSave = {
+        ...formData,
+        color: useCustomColor ? formData.color : null
+      }
+
       const response = await fetch('/api/admin/modules', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSave),
       })
 
       if (!response.ok) {
@@ -84,21 +102,22 @@ export default function ModuleCreateForm({ projects }: { projects: Project[] }) 
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-2">
+              <Label className="text-slate-700 font-semibold">Mã Module (ID - Duy nhất)</Label>
+              <Input 
+                value={formData.id} 
+                onChange={e => setFormData({...formData, id: e.target.value.toLowerCase()})}
+                className="rounded-xl border-slate-200 focus:ring-blue-500 h-11"
+                placeholder="ví dụ: phan-anh, feedback, services..."
+              />
+              <p className="text-[10px] text-slate-400 italic">* Dùng làm khóa chính, không được trùng lặp</p>
+            </div>
+            <div className="space-y-2">
               <Label className="text-slate-700 font-semibold">Tiêu đề (Dùng \n để xuống dòng)</Label>
               <Textarea 
                 value={formData.title} 
                 onChange={e => setFormData({...formData, title: e.target.value})}
                 className="rounded-xl border-slate-200 focus:ring-blue-500 transition-all min-h-[100px]"
                 placeholder="Nhập tiêu đề hiển thị"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label className="text-slate-700 font-semibold">Mô tả ngắn</Label>
-              <Textarea 
-                value={formData.description} 
-                onChange={e => setFormData({...formData, description: e.target.value})}
-                className="rounded-xl border-slate-200 focus:ring-blue-500 transition-all min-h-[100px]"
-                placeholder="Nhập mô tả cho module"
               />
             </div>
           </div>
@@ -141,6 +160,93 @@ export default function ModuleCreateForm({ projects }: { projects: Project[] }) 
               className="rounded-xl border-slate-200 focus:ring-blue-500 h-11"
               placeholder="https://images.unsplash.com/..."
             />
+          </div>
+
+          <div className="space-y-4">
+            <Label className="text-slate-700 font-semibold">Màu sắc hiển thị</Label>
+            <div className="flex flex-col sm:flex-row gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+              <div className="flex items-center space-x-2">
+                <Switch 
+                  id="custom-color-toggle" 
+                  checked={useCustomColor} 
+                  onCheckedChange={(checked) => {
+                    setUseCustomColor(checked)
+                    if (!checked) {
+                      setFormData({...formData, color: ''})
+                    } else if (!formData.color) {
+                      setFormData({...formData, color: '#06b6d4'})
+                    }
+                  }}
+                />
+                <Label htmlFor="custom-color-toggle" className="text-slate-700 cursor-pointer">Sử dụng màu tùy chỉnh</Label>
+              </div>
+
+              {useCustomColor && (
+                <div className="flex items-center gap-3 animate-in fade-in slide-in-from-left-2 duration-300">
+                  <Input 
+                    type="color"
+                    value={formData.color || '#06b6d4'} 
+                    onChange={e => setFormData({...formData, color: e.target.value})}
+                    className="w-12 h-10 p-1 rounded-lg border-slate-200 cursor-pointer"
+                  />
+                  <Input 
+                    type="text"
+                    value={formData.color} 
+                    onChange={e => setFormData({...formData, color: e.target.value})}
+                    className="rounded-xl border-slate-200 focus:ring-blue-500 h-10 w-32 font-mono text-sm"
+                    placeholder="#HEX color"
+                  />
+                  <div 
+                    className="w-8 h-8 rounded-full border border-white shadow-sm"
+                    style={{ backgroundColor: formData.color }}
+                  />
+                </div>
+              )}
+              
+              {!useCustomColor && (
+                <div className="flex items-center gap-2 text-slate-500 text-sm italic">
+                  <div className="w-4 h-4 rounded-full bg-cyan-500 shadow-sm shadow-cyan-200" />
+                  Sử dụng màu Cyan mặc định của hệ thống
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-3">
+              <Label className="text-slate-700 font-semibold">Màu chữ (Bình thường)</Label>
+              <div className="flex items-center gap-3">
+                <Input 
+                  type="color"
+                  value={formData.text_color} 
+                  onChange={e => setFormData({...formData, text_color: e.target.value})}
+                  className="w-12 h-10 p-1 rounded-lg border-slate-200 cursor-pointer"
+                />
+                <Input 
+                  type="text"
+                  value={formData.text_color} 
+                  onChange={e => setFormData({...formData, text_color: e.target.value})}
+                  className="rounded-xl border-slate-200 focus:ring-blue-500 h-10 w-32 font-mono text-sm"
+                />
+              </div>
+            </div>
+            <div className="space-y-3">
+              <Label className="text-slate-700 font-semibold">Màu chữ (Khi Hover)</Label>
+              <div className="flex items-center gap-3">
+                <Input 
+                  type="color"
+                  value={formData.text_color_hover} 
+                  onChange={e => setFormData({...formData, text_color_hover: e.target.value})}
+                  className="w-12 h-10 p-1 rounded-lg border-slate-200 cursor-pointer"
+                />
+                <Input 
+                  type="text"
+                  value={formData.text_color_hover} 
+                  onChange={e => setFormData({...formData, text_color_hover: e.target.value})}
+                  className="rounded-xl border-slate-200 focus:ring-blue-500 h-10 w-32 font-mono text-sm"
+                />
+              </div>
+            </div>
           </div>
 
           <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border border-slate-100">

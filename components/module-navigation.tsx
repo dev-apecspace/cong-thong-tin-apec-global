@@ -18,7 +18,29 @@ import {
   Megaphone,
   TrendingUp,
   Trophy,
-  ExternalLink,
+  MessageSquare,
+  MessageCircle,
+  MessagesSquare,
+  MessageSquareWarning,
+  Shield,
+  Box,
+  Layout,
+  Settings,
+  Bell,
+  Search,
+  Globe,
+  Lock,
+  Eye,
+  Heart,
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  CheckCircle,
+  AlertTriangle,
+  Info,
+  FileSearch,
+  BookOpen,
   type LucideIcon,
 } from 'lucide-react';
 import { Card } from '@/components/ui/card';
@@ -41,6 +63,33 @@ const iconMap: Record<string, LucideIcon> = {
   Megaphone,
   TrendingUp,
   Trophy,
+  MessageSquare,
+  MessageCircle,
+  MessagesSquare,
+  MessageSquareWarning,
+  // Aliases for common typos or simpler names
+  Message: MessageSquare, 
+  Feedback: MessageSquare,
+  'message-square-warning': MessageSquareWarning,
+  Shield,
+  Box,
+  Layout,
+  Settings,
+  Bell,
+  Search,
+  Globe,
+  Lock,
+  Eye,
+  Heart,
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  CheckCircle,
+  AlertTriangle,
+  Info,
+  FileSearch,
+  BookOpen,
 };
 
 interface ModuleNavigationProps {
@@ -64,6 +113,7 @@ export function ModuleNavigation({
 }: ModuleNavigationProps) {
   const [selectedModule, setSelectedModule] = useState<CMSModule | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [hoveredModuleId, setHoveredModuleId] = useState<string | null>(null);
   
   const visibleModules = modules
     .filter((module) => module.isVisible)
@@ -71,6 +121,32 @@ export function ModuleNavigation({
 
   const handleCardClick = (module: CMSModule, e: React.MouseEvent) => {
     e.preventDefault();
+
+    // Debug: expose module details so we can inspect where externalUrl is stored
+    // (open browser console to see this when clicking a module)
+    // eslint-disable-next-line no-console
+    console.debug('Module clicked:', module.id, module.title, module.details);
+
+    // Prefer the first project's detail (same behavior as modal default tab)
+    const firstProjectName = module.projects?.[0]?.name;
+    const firstDetail = firstProjectName ? module.details?.[firstProjectName] : null;
+    if (firstDetail?.externalUrl) {
+      window.location.href = firstDetail.externalUrl;
+      return;
+    }
+
+    // Fallback: if any project's detail contains an externalUrl, use the first found
+    if (module.details) {
+      for (const key of Object.keys(module.details)) {
+        const d = module.details[key];
+        if (d?.externalUrl) {
+          window.location.href = d.externalUrl;
+          return;
+        }
+      }
+    }
+
+    // No externalUrl found: open the modal
     setSelectedModule(module);
     setIsModalOpen(true);
   };
@@ -158,54 +234,103 @@ export function ModuleNavigation({
             {/* Modules Grid - Futuristic 3x3 layout */}
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-8">
             {visibleModules.map((module) => {
-              const Icon = iconMap[module.icon] || Building2;
+              const iconKey = module.icon;
+              const Icon = iconMap[iconKey] || 
+                          iconMap[Object.keys(iconMap).find(k => k.toLowerCase() === iconKey.toLowerCase()) || ''] || 
+                          Building2;
+              const customColor = module.color; // e.g. "#ef4444" (red)
               
               return (
                 <div key={module.id} className="relative group perspective-1000">
                   <Card 
-                    className="relative overflow-hidden cursor-pointer border border-cyan-500/30 bg-slate-900/40 hover:bg-slate-800/80 shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-700 rounded-[32px] h-[160px] sm:h-[140px] group-hover:border-cyan-500/60 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] group-hover:-translate-y-2 group-hover:rotate-x-2"
+                    className="relative overflow-hidden cursor-pointer border bg-[#0f172a] hover:bg-slate-800/80 transition-all duration-700 rounded-[32px] h-[160px] sm:h-[140px] group-hover:shadow-[0_0_30px_rgba(6,182,212,0.2)] group-hover:-translate-y-2 group-hover:rotate-x-2"
+                    style={{ 
+                      borderColor: customColor ? `${customColor}33` : 'rgba(30, 41, 59, 0.5)',
+                    }}
                     onClick={(e) => handleCardClick(module, e)}
+                    onMouseEnter={(e) => {
+                      setHoveredModuleId(module.id);
+                      if (customColor) {
+                        e.currentTarget.style.borderColor = customColor;
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      setHoveredModuleId(null);
+                      if (customColor) {
+                        e.currentTarget.style.borderColor = `${customColor}33`;
+                      }
+                    }}
                   >
                     {/* Multi-layered Tech Gradient */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10" />
-                      <div className="absolute inset-0 bg-[radial-gradient(#06b6d4_1px,transparent_1px)] [background-size:16px_16px] opacity-20" />
+                      <div 
+                        className="absolute inset-0" 
+                        style={{ 
+                          background: customColor 
+                            ? `linear-gradient(to bottom right, ${customColor}1a, transparent, #a855f71a)` 
+                            : 'linear-gradient(to bottom right, #06b6d41a, transparent, #a855f71a)' 
+                        }} 
+                      />
                     </div>
-                    
-                    {/* Moving Light Beam Animation */}
-                    <div className="absolute -inset-[100%] group-hover:animate-[spin_4s_linear_infinite] opacity-0 group-hover:opacity-20 pointer-events-none">
-                      <div className="absolute top-0 left-1/2 w-[2px] h-full bg-gradient-to-b from-transparent via-cyan-400 to-transparent" />
-                    </div>
-                    
-                    {/* Glowing Accent Border */}
-                    <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-1000" />
                     
                     {/* Content Container */}
-                    <div className="relative z-10 flex flex-col-reverse sm:flex-row items-center justify-center sm:justify-between h-full px-5 sm:px-8 py-4 gap-3 sm:gap-0">
+                    <div className="relative z-10 flex items-center justify-between h-full px-6 sm:px-8 py-4">
                       {/* Left Side: Text */}
-                      <div className="flex-1 sm:pr-4 text-center sm:text-left transition-transform duration-500 group-hover:translate-x-1">
-                        <h3 className="text-xs sm:text-base lg:text-lg font-black text-slate-100 leading-tight whitespace-pre-line group-hover:text-cyan-400 transition-all duration-300 drop-shadow-sm uppercase tracking-tight">
+                      <div className="flex-1 transition-transform duration-500 group-hover:translate-x-1">
+                        <h3 
+                          className="text-base sm:text-lg lg:text-xl font-black leading-tight whitespace-pre-line transition-all duration-300 drop-shadow-sm uppercase tracking-tight"
+                          style={{ 
+                            color: hoveredModuleId === module.id && module.textColorHover 
+                              ? module.textColorHover 
+                              : (module.textColor || '#ffffff'),
+                          }}
+                        >
                           {module.title}
                         </h3>
-                        <div className="flex items-center justify-center sm:justify-start gap-1.5 mt-2.5">
-                          <div className="w-1.5 h-1.5 rounded-full bg-cyan-500/30 group-hover:bg-cyan-400 group-hover:animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.5)] transition-all" />
-                          <span className="text-[8px] sm:text-[9px] font-mono text-slate-500 group-hover:text-cyan-500/80 transition-all uppercase tracking-[0.2em]">NODE_0{module.order}</span>
+                        <div className="flex items-center gap-2 mt-3">
+                          <div 
+                            className="w-1.5 h-1.5 rounded-full"
+                            style={{ 
+                              backgroundColor: customColor ? customColor : '#06b6d4',
+                              opacity: 0.6
+                            }}
+                          />
+                          <span 
+                            className="text-[9px] font-mono text-slate-500 uppercase tracking-[0.2em]"
+                          >
+                            NODE_0{module.order}
+                          </span>
                         </div>
                       </div>
 
-                      {/* Right Side: Icon */}
+                      {/* Right Side: Icon Container */}
                       <div className="flex-shrink-0 relative transition-all duration-700 group-hover:scale-110">
-                        {/* Complex Glow effect behind icon */}
-                        <div className="absolute inset-0 bg-cyan-500/0 blur-2xl rounded-full scale-150 group-hover:bg-cyan-500/30 transition-all duration-700" />
-                        <div className="absolute inset-0 bg-purple-500/0 blur-2xl rounded-full scale-150 group-hover:bg-purple-500/10 transition-all duration-700 delay-150" />
-                        
-                        <div className="relative z-10 p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/5 group-hover:border-cyan-500/30 transition-all duration-500">
-                          <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-400 group-hover:text-white transition-all duration-500 animate-neon-pulse" strokeWidth={1.5} aria-hidden="true" />
+                        <div 
+                          className="relative z-10 p-4 sm:p-5 rounded-[24px] bg-slate-900/50 border border-white/5 shadow-inner transition-all duration-500 group-hover:bg-white/5"
+                          style={{ 
+                            borderColor: customColor ? `${customColor}33` : 'rgba(255, 255, 255, 0.05)'
+                          }}
+                        >
+                          <Icon 
+                            className="w-8 h-8 sm:w-10 sm:h-10 transition-all duration-500 animate-pulse" 
+                            style={{ 
+                                color: customColor ? customColor : '#22d3ee',
+                                filter: customColor ? `drop-shadow(0 0 8px ${customColor}80)` : 'drop-shadow(0 0 8px rgba(34,211,238,0.5))'
+                            }}
+                            strokeWidth={1.5} 
+                            aria-hidden="true" 
+                          />
                         </div>
                         
-                        {/* Digital corner brackets - Re-positioned and improved */}
-                        <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-cyan-500/0 group-hover:border-cyan-500/50 transition-all duration-700 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                        <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-cyan-500/0 group-hover:border-cyan-500/50 transition-all duration-700 group-hover:-translate-x-1 group-hover:translate-y-1" />
+                        {/* Digital corner brackets (Only visible on hover) */}
+                        <div 
+                          className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:translate-x-1 group-hover:-translate-y-1"
+                          style={{ borderTopColor: customColor ? customColor : '#06b6d4', borderRightColor: customColor ? customColor : '#06b6d4' }}
+                        />
+                        <div 
+                          className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:-translate-x-1 group-hover:translate-y-1"
+                          style={{ borderBottomColor: customColor ? customColor : '#06b6d4', borderLeftColor: customColor ? customColor : '#06b6d4' }}
+                        />
                       </div>
                     </div>
                   </Card>

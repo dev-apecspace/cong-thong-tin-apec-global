@@ -87,6 +87,9 @@ export async function getSiteConfiguration(): Promise<SiteConfiguration | null> 
         isVisible: m.is_visible,
         route: m.route,
         backgroundImage: m.background_image,
+        color: m.color,
+        textColor: m.text_color,
+        textColorHover: m.text_color_hover,
         projects: allProjects,
         details: moduleDetails
       }

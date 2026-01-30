@@ -19,7 +19,9 @@ export interface CMSModule {
   route: string;
   summary?: string; // Short overview for featured display
   webLink?: string; // External website link
-  color?: string; // Optional color override
+  color?: string; // Optional accent color override
+  textColor?: string; // Custom text color
+  textColorHover?: string; // Custom text color on hover
   backgroundImage?: string; // Background image for card
   projects?: CMSProject[]; // List of associated projects
   details?: Record<string, any>; // Dynamic details per company

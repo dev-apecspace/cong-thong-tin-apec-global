@@ -37,15 +37,30 @@ export default function ModuleEditForm({ module, projects, details }: any) {
     route: module.route,
     display_order: module.display_order,
     is_visible: module.is_visible,
-    background_image: module.background_image || ''
+    background_image: module.background_image || '',
+    color: module.color || '',
+    text_color: module.text_color || '#ffffff',
+    text_color_hover: module.text_color_hover || '#22d3ee'
   })
 
-  // Project details state
+  const [useCustomColor, setUseCustomColor] = useState(!!module.color)
+
+  // Project details state - now stores both JSON and separate externalUrl
   const [projectDetails, setProjectDetails] = useState(() => {
-    const initialState: Record<string, string> = {}
+    const initialState: Record<string, { json: string; externalUrl: string }> = {}
     projects.forEach((p: any) => {
       const detail = details.find((d: any) => d.project_id === p.id)
-      initialState[p.id] = detail ? JSON.stringify(detail.content, null, 2) : '{}'
+      const content = detail?.content || {}
+      const externalUrl = content.externalUrl || ''
+      
+      // Remove externalUrl from content for display
+      const contentWithoutUrl = { ...content }
+      delete contentWithoutUrl.externalUrl
+      
+      initialState[p.id] = {
+        json: JSON.stringify(contentWithoutUrl, null, 2),
+        externalUrl: externalUrl
+      }
     })
     return initialState
   })
@@ -54,9 +69,14 @@ export default function ModuleEditForm({ module, projects, details }: any) {
     setLoading(true)
     try {
       // 1. Update basic module info
+      const dataToSave = {
+        ...formData,
+        color: useCustomColor ? formData.color : null
+      }
+
       const { error: moduleUpdateError } = await supabase
         .from('modules')
-        .update(formData)
+        .update(dataToSave)
         .eq('id', module.id)
 
       if (moduleUpdateError) throw moduleUpdateError
@@ -65,9 +85,14 @@ export default function ModuleEditForm({ module, projects, details }: any) {
       for (const projectId of Object.keys(projectDetails)) {
         let parsedContent
         try {
-          parsedContent = JSON.parse(projectDetails[projectId])
+          parsedContent = JSON.parse(projectDetails[projectId].json)
         } catch (e) {
           throw new Error(`JSON không hợp lệ ở project ${projectId}`)
+        }
+
+        // Add externalUrl back if it exists
+        if (projectDetails[projectId].externalUrl) {
+          parsedContent.externalUrl = projectDetails[projectId].externalUrl
         }
 
         const { error: detailError } = await supabase
@@ -227,6 +252,93 @@ export default function ModuleEditForm({ module, projects, details }: any) {
                 />
               </div>
 
+              <div className="space-y-4">
+                <Label className="text-slate-700 font-semibold">Màu sắc hiển thị</Label>
+                <div className="flex flex-col sm:flex-row gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                  <div className="flex items-center space-x-2">
+                    <Switch 
+                      id="custom-color-toggle" 
+                      checked={useCustomColor} 
+                      onCheckedChange={(checked) => {
+                        setUseCustomColor(checked)
+                        if (!checked) {
+                          setFormData({...formData, color: ''})
+                        } else if (!formData.color) {
+                          setFormData({...formData, color: '#06b6d4'}) // Default cyan
+                        }
+                      }}
+                    />
+                    <Label htmlFor="custom-color-toggle" className="text-slate-700 cursor-pointer">Sử dụng màu tùy chỉnh</Label>
+                  </div>
+
+                  {useCustomColor && (
+                    <div className="flex items-center gap-3 animate-in fade-in slide-in-from-left-2 duration-300">
+                      <Input 
+                        type="color"
+                        value={formData.color || '#06b6d4'} 
+                        onChange={e => setFormData({...formData, color: e.target.value})}
+                        className="w-12 h-10 p-1 rounded-lg border-slate-200 cursor-pointer"
+                      />
+                      <Input 
+                        type="text"
+                        value={formData.color} 
+                        onChange={e => setFormData({...formData, color: e.target.value})}
+                        className="rounded-xl border-slate-200 focus:ring-blue-500 h-10 w-32 font-mono text-sm"
+                        placeholder="#HEX color"
+                      />
+                      <div 
+                        className="w-8 h-8 rounded-full border border-white shadow-sm"
+                        style={{ backgroundColor: formData.color }}
+                      />
+                    </div>
+                  )}
+                  
+                  {!useCustomColor && (
+                    <div className="flex items-center gap-2 text-slate-500 text-sm italic">
+                      <div className="w-4 h-4 rounded-full bg-cyan-500 shadow-sm shadow-cyan-200" />
+                      Sử dụng màu Cyan mặc định của hệ thống
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <Label className="text-slate-700 font-semibold">Màu chữ (Bình thường)</Label>
+                  <div className="flex items-center gap-3">
+                    <Input 
+                      type="color"
+                      value={formData.text_color} 
+                      onChange={e => setFormData({...formData, text_color: e.target.value})}
+                      className="w-12 h-10 p-1 rounded-lg border-slate-200 cursor-pointer"
+                    />
+                    <Input 
+                      type="text"
+                      value={formData.text_color} 
+                      onChange={e => setFormData({...formData, text_color: e.target.value})}
+                      className="rounded-xl border-slate-200 focus:ring-blue-500 h-10 w-32 font-mono text-sm"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <Label className="text-slate-700 font-semibold">Màu chữ (Khi Hover)</Label>
+                  <div className="flex items-center gap-3">
+                    <Input 
+                      type="color"
+                      value={formData.text_color_hover} 
+                      onChange={e => setFormData({...formData, text_color_hover: e.target.value})}
+                      className="w-12 h-10 p-1 rounded-lg border-slate-200 cursor-pointer"
+                    />
+                    <Input 
+                      type="text"
+                      value={formData.text_color_hover} 
+                      onChange={e => setFormData({...formData, text_color_hover: e.target.value})}
+                      className="rounded-xl border-slate-200 focus:ring-blue-500 h-10 w-32 font-mono text-sm"
+                    />
+                  </div>
+                </div>
+              </div>
+
               <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border border-slate-100">
                 <div className="space-y-0.5">
                   <Label htmlFor="visible" className="text-slate-900 font-semibold cursor-pointer">Trạng thái hiển thị</Label>
@@ -273,22 +385,62 @@ export default function ModuleEditForm({ module, projects, details }: any) {
                           <span className="text-xs font-medium px-2 py-1 bg-indigo-50 text-indigo-700 rounded-md">ID: {p.id}</span>
                         </div>
 
+                        {/* External URL Field - Always visible */}
                         <div className="space-y-3">
-                          <Label className="text-slate-700 font-semibold">Dữ liệu JSON</Label>
-                          <Textarea 
-                            value={projectDetails[p.id]} 
+                          <Label className="text-slate-700 font-semibold">🔗 Redirect sang trang web khác (tùy chọn)</Label>
+                          <Input 
+                            type="url"
+                            value={projectDetails[p.id].externalUrl} 
                             onChange={e => setProjectDetails({
                               ...projectDetails,
-                              [p.id]: e.target.value
+                              [p.id]: {
+                                ...projectDetails[p.id],
+                                externalUrl: e.target.value
+                              }
                             })}
-                            className="rounded-xl border-slate-200 focus:ring-blue-500 font-mono text-xs min-h-[500px] bg-slate-50/50"
+                            className="rounded-xl border-slate-200 focus:ring-blue-500 h-11"
+                            placeholder="https://example.com"
                           />
-                          <div className="p-4 rounded-xl bg-amber-50 border border-amber-100">
-                            <p className="text-xs text-amber-800 leading-relaxed">
-                              <strong>Lưu ý:</strong> Vui lòng nhập đúng định dạng JSON. Dữ liệu này quyết định thông tin hiển thị khi người dùng nhấn vào module trong phạm vi dự án <strong>{p.name}</strong>.
+                          <p className="text-xs text-slate-500">
+                            {projectDetails[p.id].externalUrl 
+                              ? '✅ Khi có URL này, người dùng sẽ được redirect sang link, nội dung bên dưới sẽ bị ẩn' 
+                              : '⚠️ Để trống để hiển thị nội dung bình thường'}
+                          </p>
+                        </div>
+
+                        {/* Content JSON - Only show if no externalUrl */}
+                        {!projectDetails[p.id].externalUrl && (
+                          <div className="space-y-3 border-t border-slate-100 pt-6">
+                            <div>
+                              <Label className="text-slate-700 font-semibold">Dữ liệu JSON</Label>
+                              <Textarea 
+                                value={projectDetails[p.id].json} 
+                                onChange={e => setProjectDetails({
+                                  ...projectDetails,
+                                  [p.id]: {
+                                    ...projectDetails[p.id],
+                                    json: e.target.value
+                                  }
+                                })}
+                                className="rounded-xl border-slate-200 focus:ring-blue-500 font-mono text-xs min-h-[500px] bg-slate-50/50"
+                              />
+                              <div className="p-4 rounded-xl bg-amber-50 border border-amber-100">
+                                <p className="text-xs text-amber-800 leading-relaxed">
+                                  <strong>Lưu ý:</strong> Vui lòng nhập đúng định dạng JSON. Dữ liệu này quyết định thông tin hiển thị khi người dùng nhấn vào module trong phạm vi dự án <strong>{p.name}</strong>.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Show message when URL is set */}
+                        {projectDetails[p.id].externalUrl && (
+                          <div className="p-4 rounded-xl bg-blue-50 border border-blue-100">
+                            <p className="text-xs text-blue-800 leading-relaxed">
+                              <strong>ℹ️ Chế độ Redirect:</strong> Module này sẽ chuyển hướng người dùng đến <strong>{projectDetails[p.id].externalUrl}</strong>. Phần nội dung JSON ở dưới bị ẩn.
                             </p>
                           </div>
-                        </div>
+                        )}
                       </div>
                     </div>
                   </TabsContent>

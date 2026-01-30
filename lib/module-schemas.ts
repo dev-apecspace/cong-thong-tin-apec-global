@@ -42,6 +42,11 @@ export const MODULE_SCHEMAS: Record<string, any> = {
   'capabilities': {
     fields: [
       {
+        key: 'externalUrl',
+        label: 'Redirect sang trang web khác (tùy chọn)',
+        type: 'link',
+      },
+      {
         key: 'capabilityItems',
         label: 'Hồ sơ năng lực',
         type: 'array',
@@ -97,14 +102,70 @@ export const MODULE_SCHEMAS: Record<string, any> = {
   'policies': {
     fields: [
       {
-        key: 'policies',
+        key: 'externalUrl',
+        label: 'Redirect sang trang web khác (tùy chọn)',
+        type: 'link',
+      },
+      {
+        key: 'policyItems',
         label: 'Chính sách & Quy định',
-        type: 'list',
+        type: 'array',
+        render: 'evidence',
+        icon: 'FileText',
+        description: 'Mỗi chính sách có thể view web, view file, hoặc download file',
+        itemFields: [
+          {
+            key: 'name',
+            label: 'Tiêu đề',
+            type: 'text',
+            required: true,
+          },
+          {
+            key: 'description',
+            label: 'Mô tả',
+            type: 'text',
+          },
+          {
+            key: 'webUrl',
+            label: '🌐 Liên kết Web',
+            type: 'link',
+            placeholder: 'https://...'
+          },
+          {
+            key: 'fileUrl',
+            label: '📄 Link file (để xem trực tiếp)',
+            type: 'link',
+            placeholder: 'https://... hoặc path tới file'
+          },
+          {
+            key: 'downloadUrl',
+            label: '⬇️ Link tải file',
+            type: 'link',
+            placeholder: 'https://... hoặc path tới file'
+          },
+        ],
+      },
+      {
+        key: 'experience',
+        label: 'Ghi chú chung',
+        type: 'text',
+        render: 'highlighted',
+      },
+      {
+        key: 'achievements',
+        label: 'Chứng nhận & Văn bản liên quan',
+        type: 'array',
+        icon: 'Award',
       },
     ],
   },
   'career-path': {
     fields: [
+      {
+        key: 'externalUrl',
+        label: 'Redirect sang trang web khác (tùy chọn)',
+        type: 'link',
+      },
       {
         key: 'careerLevels',
         label: 'Lộ trình sự nghiệp',
@@ -115,6 +176,11 @@ export const MODULE_SCHEMAS: Record<string, any> = {
   'news': {
     fields: [
       {
+        key: 'externalUrl',
+        label: 'Redirect sang trang web khác (tùy chọn)',
+        type: 'link',
+      },
+      {
         key: 'items',
         label: 'Tin tức',
         type: 'list',
@@ -123,6 +189,11 @@ export const MODULE_SCHEMAS: Record<string, any> = {
   },
   'events': {
     fields: [
+      {
+        key: 'externalUrl',
+        label: 'Redirect sang trang web khác (tùy chọn)',
+        type: 'link',
+      },
       {
         key: 'items',
         label: 'Sự kiện',
@@ -133,6 +204,11 @@ export const MODULE_SCHEMAS: Record<string, any> = {
   'initiatives': {
     fields: [
       {
+        key: 'externalUrl',
+        label: 'Redirect sang trang web khác (tùy chọn)',
+        type: 'link',
+      },
+      {
         key: 'items',
         label: 'Sáng kiến & Dự án',
         type: 'list',
@@ -142,6 +218,11 @@ export const MODULE_SCHEMAS: Record<string, any> = {
   'recognition': {
     fields: [
       {
+        key: 'externalUrl',
+        label: 'Redirect sang trang web khác (tùy chọn)',
+        type: 'link',
+      },
+      {
         key: 'items',
         label: 'Vinh danh & Giải thưởng',
         type: 'list',
@@ -150,6 +231,11 @@ export const MODULE_SCHEMAS: Record<string, any> = {
   },
   'guidelines': {
     fields: [
+      {
+        key: 'externalUrl',
+        label: 'Redirect sang trang web khác (tùy chọn)',
+        type: 'link',
+      },
       {
         key: 'items',
         label: 'Hướng dẫn & Quy trình',

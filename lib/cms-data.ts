@@ -113,37 +113,67 @@ export const cmsData: SiteConfiguration = {
         projects: commonProjects,
         details: generateDetails(commonProjects, {
           'nam-thien-long': {
-            capabilities: ['Phát triển phần mềm doanh nghiệp', 'Tư vấn chuyển đổi số', 'Triển khai hệ thống ERP', 'An ninh mạng & Bảo mật'],
+            capabilityItems: [
+              { name: 'Phát triển phần mềm doanh nghiệp', description: 'Giải pháp ERP và quản trị doanh nghiệp toàn diện', webUrl: 'https://namthienlong.vn/services/software', fileUrl: '/docs/capabilities/nam-thien-long/software-dev.pdf', downloadUrl: '/docs/capabilities/nam-thien-long/software-dev.pdf' },
+              { name: 'Tư vấn chuyển đổi số', description: 'Lộ trình chuyển đổi số tối ưu cho doanh nghiệp vừa và nhỏ', webUrl: 'https://namthienlong.vn/consulting', fileUrl: '/docs/capabilities/nam-thien-long/digital-transformation.pdf', downloadUrl: '/docs/capabilities/nam-thien-long/digital-transformation.pdf' },
+              { name: 'Triển khai hệ thống ERP', description: 'Đối tác chiến lược của SAP và Oracle tại Việt Nam', webUrl: 'https://namthienlong.vn/erp', fileUrl: '/docs/capabilities/nam-thien-long/erp-deployment.pdf', downloadUrl: '/docs/capabilities/nam-thien-long/erp-deployment.pdf' },
+              { name: 'An ninh mạng & Bảo mật', description: 'Bảo vệ dữ liệu doanh nghiệp trước các cuộc tấn công hiện đại', webUrl: 'https://namthienlong.vn/security', fileUrl: '/docs/capabilities/nam-thien-long/security.pdf', downloadUrl: '/docs/capabilities/nam-thien-long/security.pdf' }
+            ],
             achievements: ['Giải thưởng Sao Khuê 2023', 'Top 10 doanh nghiệp CNTT Việt Nam', 'Chứng chỉ ISO 27001'],
             experience: 'Hơn 10 năm kinh nghiệm trong ngành công nghệ',
             profileUrl: '/docs/profile-namthienlong.pdf'
           },
           'apec-bci': {
-            capabilities: ['Tư vấn đầu tư tài chính', 'Quản lý tài sản số', 'Phân tích thị trường', 'Bất động sản công nghiệp'],
+            capabilityItems: [
+              { name: 'Tư vấn đầu tư tài chính', description: 'Phân tích và tối ưu hóa danh mục đầu tư', webUrl: 'https://apecbci.vn/investment' },
+              { name: 'Quản lý tài sản số', description: 'Nền tảng quản lý tài sản trên Blockchain', webUrl: 'https://apecbci.vn/digital-assets' },
+              { name: 'Phân tích thị trường', description: 'Báo cáo chuyên sâu về thị trường tài chính Đông Nam Á' },
+              { name: 'Bất động sản công nghiệp', description: 'Phát triển các khu công nghiệp thông minh' }
+            ],
             achievements: ['Dự án tiêu biểu 2022', 'Đối tác chiến lược toàn cầu', 'Chứng chỉ quản lý chất lượng'],
             experience: 'Đội ngũ chuyên gia hàng đầu từ các tập đoàn đa quốc gia',
             profileUrl: '/docs/profile-apecbci.pdf'
           },
           'lifecare': {
-            capabilities: ['Chăm sóc sức khỏe chủ động', 'Phân phối dược phẩm', 'Quản lý bệnh viện số', 'Thiết bị y tế cao cấp'],
+            capabilityItems: [
+              { name: 'Chăm sóc sức khỏe chủ động', description: 'Hệ thống phòng khám và chăm sóc từ xa', webUrl: 'https://lifecare.vn/healthcare' },
+              { name: 'Phân phối dược phẩm', description: 'Chuỗi cung ứng dược phẩm đạt chuẩn GSP' },
+              { name: 'Quản lý bệnh viện số', description: 'Giải pháp HIS/LIS cho các bệnh viện hiện đại' },
+              { name: 'Thiết bị y tế cao cấp', description: 'Nhập khẩu và bảo trì trang thiết bị y tế' }
+            ],
             achievements: ['Huân chương lao động hạng nhì', 'Top 10 thương hiệu vì sức khỏe cộng đồng', 'Đối tác WHO tại VN'],
             experience: 'Tiên phong trong lĩnh vực y tế dự phòng và công nghệ sinh học',
             profileUrl: '/docs/profile-lifecare.pdf'
           },
           'superapp': {
-            capabilities: ['Phát triển ứng dụng Mobile siêu đa năng', 'Nền tảng thanh toán điện tử', 'Hệ sinh thái Mini-app', 'Xử lý dữ liệu lớn (Big Data)'],
+            capabilityItems: [
+              { name: 'Phát triển ứng dụng Mobile siêu đa năng', description: 'Nền tảng tích hợp hơn 50 dịch vụ thiết yếu' },
+              { name: 'Nền tảng thanh toán điện tử', description: 'Hệ thống thanh toán bảo mật PCI DSS Level 1' },
+              { name: 'Hệ sinh thái Mini-app', description: 'Môi trường phát triển cho các đối tác thứ ba' },
+              { name: 'Xử lý dữ liệu lớn (Big Data)', description: 'Phân tích hành vi người dùng bằng AI' }
+            ],
             achievements: ['Top 1 Ứng dụng tải nhiều nhất 2023', 'Chứng chỉ bảo mật PCI DSS', '10 triệu người dùng hoạt động'],
             experience: 'Dẫn đầu xu hướng nền tảng tất cả trong một',
             profileUrl: '/docs/profile-superapp.pdf'
           },
           'guardcam': {
-            capabilities: ['Camera AI nhận diện khuôn mặt', 'Hệ thống báo động thông minh', 'Giải pháp giám sát đô thị', 'Lưu trữ đám mây bảo mật cao'],
+            capabilityItems: [
+              { name: 'Camera AI nhận diện khuôn mặt', description: 'Độ chính xác 99.9% trong điều kiện thiếu sáng' },
+              { name: 'Hệ thống báo động thông minh', description: 'Tích hợp cảm biến và thông báo tức thì' },
+              { name: 'Giải pháp giám sát đô thị', description: 'Hệ thống quản lý giao thông thông minh' },
+              { name: 'Lưu trữ đám mây bảo mật cao', description: 'Mã hóa dữ liệu đầu cuối' }
+            ],
             achievements: ['Giải pháp an ninh xuất sắc 2022', 'Triển khai Smart City tại 5 thành phố', 'Bằng sáng chế thuật toán AI'],
             experience: 'Kỹ sư chuyên gia từ các viện nghiên cứu an ninh',
             profileUrl: '/docs/profile-guardcam.pdf'
           },
           'ecoop': {
-            capabilities: ['Sàn thương mại điện tử nông sản', 'Truy xuất nguồn gốc Blockchain', 'Logistics thông minh cho nông nghiệp', 'Tư vấn nông nghiệp công nghệ cao'],
+            capabilityItems: [
+              { name: 'Sàn thương mại điện tử nông sản', description: 'Kết nối trực tiếp nông hộ và người tiêu dùng' },
+              { name: 'Truy xuất nguồn gốc Blockchain', description: 'Minh bạch quy trình sản xuất và vận chuyển' },
+              { name: 'Logistics thông minh cho nông nghiệp', description: 'Tối ưu hóa chuỗi cung ứng lạnh' },
+              { name: 'Tư vấn nông nghiệp công nghệ cao', description: 'Chuyển giao công nghệ canh tác hiện đại' }
+            ],
             achievements: ['Sáng kiến nông nghiệp xanh 2023', 'Kết nối hơn 1000 hợp tác xã', 'Chứng nhận hữu cơ quốc tế'],
             experience: 'Kết hợp tri thức nông nghiệp và công nghệ hiện đại',
             profileUrl: '/docs/profile-ecoop.pdf'
@@ -162,53 +192,55 @@ export const cmsData: SiteConfiguration = {
         projects: commonProjects,
         details: generateDetails(commonProjects, {
           'nam-thien-long': {
-            policies: [
-              { title: 'Nội quy lao động 2024', date: '01/01/2024', type: 'PDF' },
-              { title: 'Chính sách bảo mật dữ liệu', date: '15/03/2023', type: 'DOCX' },
-              { title: 'Quy trình thanh toán nội bộ', date: '10/12/2023', type: 'PDF' }
-            ]
+            policyItems: [
+              { name: 'Nội quy lao động 2024', description: 'Quy định về thời gian làm việc, kỷ luật và phúc lợi', date: '01/01/2024', type: 'PDF', webUrl: 'https://namthienlong.vn/policies/noi-quy-lao-dong-2024', fileUrl: '/docs/policies/nam-thien-long/noi-quy-lao-dong-2024.pdf', downloadUrl: '/docs/policies/nam-thien-long/noi-quy-lao-dong-2024.pdf' },
+              { name: 'Chính sách bảo mật dữ liệu', description: 'Quy trình xử lý và bảo vệ thông tin khách hàng', date: '15/03/2023', type: 'DOCX', webUrl: 'https://namthienlong.vn/policies/chinh-sach-bao-mat-du-lieu', fileUrl: '/docs/policies/nam-thien-long/chinh-sach-bao-mat-du-lieu.docx', downloadUrl: '/docs/policies/nam-thien-long/chinh-sach-bao-mat-du-lieu.docx' },
+              { name: 'Quy trình thanh toán nội bộ', description: 'Hướng dẫn thanh toán chi phí và tạm ứng', date: '10/12/2023', type: 'PDF', webUrl: 'https://namthienlong.vn/policies/quy-trinh-thanh-toan-noi-bo', fileUrl: '/docs/policies/nam-thien-long/quy-trinh-thanh-toan-noi-bo.pdf', downloadUrl: '/docs/policies/nam-thien-long/quy-trinh-thanh-toan-noi-bo.pdf' }
+            ],
+            experience: 'Các chính sách được áp dụng cho toàn bộ nhân viên Nam Thiên Long'
           },
           'apec-bci': {
-            policies: [
-              { title: 'Quy trình thẩm định đầu tư', date: '05/02/2024', type: 'PDF' },
-              { title: 'Chính sách quản lý rủi ro', date: '12/01/2024', type: 'PDF' },
-              { title: 'Hướng dẫn giao dịch tài sản số', date: '20/03/2024', type: 'DOCX' }
+            policyItems: [
+              { name: 'Quy trình thẩm định đầu tư', description: 'Các bước đánh giá dự án và startup', date: '05/02/2024', type: 'PDF', webUrl: 'https://apecbci.vn/policies/quy-trinh-tham-dinh-dau-tu', fileUrl: '/docs/policies/apec-bci/quy-trinh-tham-dinh-dau-tu.pdf', downloadUrl: '/docs/policies/apec-bci/quy-trinh-tham-dinh-dau-tu.pdf' },
+              { name: 'Chính sách quản lý rủi ro', description: 'Khung quản trị rủi ro trong đầu tư mạo hiểm', date: '12/01/2024', type: 'PDF', webUrl: 'https://apecbci.vn/policies/chinh-sach-quan-ly-rui-ro', fileUrl: '/docs/policies/apec-bci/chinh-sach-quan-ly-rui-ro.pdf', downloadUrl: '/docs/policies/apec-bci/chinh-sach-quan-ly-rui-ro.pdf' },
+              { name: 'Hướng dẫn giao dịch tài sản số', description: 'Quy định về mua bán và lưu trữ crypto', date: '20/03/2024', type: 'DOCX', webUrl: 'https://apecbci.vn/policies/huong-dan-giao-dich-tai-san-so', fileUrl: '/docs/policies/apec-bci/huong-dan-giao-dich-tai-san-so.docx', downloadUrl: '/docs/policies/apec-bci/huong-dan-giao-dich-tai-san-so.docx' }
             ]
           },
           'lifecare': {
-            policies: [
-              { title: 'Tiêu chuẩn an toàn dược phẩm', date: '01/01/2024', type: 'PDF' },
-              { title: 'Quy tắc ứng xử với bệnh nhân', date: '15/02/2024', type: 'PDF' },
-              { title: 'Quy trình kiểm soát chất lượng', date: '10/03/2024', type: 'PDF' }
+            policyItems: [
+              { name: 'Tiêu chuẩn an toàn dược phẩm', description: 'Quy định về bảo quản và phân phối thuốc', date: '01/01/2024', type: 'PDF', webUrl: 'https://lifecare.vn/policies/tieu-chuan-an-toan-duoc-pham', fileUrl: '/docs/policies/lifecare/tieu-chuan-an-toan-duoc-pham.pdf', downloadUrl: '/docs/policies/lifecare/tieu-chuan-an-toan-duoc-pham.pdf' },
+              { name: 'Quy tắc ứng xử với bệnh nhân', description: 'Tiêu chuẩn giao tiếp và phục vụ khách hàng', date: '15/02/2024', type: 'PDF', webUrl: 'https://lifecare.vn/policies/quy-tac-ung-xu-voi-benh-nhan', fileUrl: '/docs/policies/lifecare/quy-tac-ung-xu-voi-benh-nhan.pdf', downloadUrl: '/docs/policies/lifecare/quy-tac-ung-xu-voi-benh-nhan.pdf' },
+              { name: 'Quy trình kiểm soát chất lượng', description: 'Quy trình QA/QC trong sản xuất sinh học', date: '10/03/2024', type: 'PDF', webUrl: 'https://lifecare.vn/policies/quy-trinh-kiem-soat-chat-luong', fileUrl: '/docs/policies/lifecare/quy-trinh-kiem-soat-chat-luong.pdf', downloadUrl: '/docs/policies/lifecare/quy-trinh-kiem-soat-chat-luong.pdf' }
             ]
           },
           'superapp': {
-            policies: [
-              { title: 'Chính sách quyền riêng tư người dùng', date: '01/01/2024', type: 'PDF' },
-              { title: 'Quy định phát triển Mini-app', date: '15/01/2024', type: 'PDF' },
-              { title: 'Tiêu chuẩn bảo mật API', date: '20/02/2024', type: 'DOCX' }
+            policyItems: [
+              { name: 'Chính sách quyền riêng tư người dùng', description: 'Cam kết bảo mật thông tin người dùng cuối', date: '01/01/2024', type: 'PDF', webUrl: 'https://superapp.vn/policies/chinh-sach-quyen-rieng-tu', fileUrl: '/docs/policies/superapp/chinh-sach-quyen-rieng-tu.pdf', downloadUrl: '/docs/policies/superapp/chinh-sach-quyen-rieng-tu.pdf' },
+              { name: 'Quy định phát triển Mini-app', description: 'Bộ quy tắc cho các đối tác tích hợp', date: '15/01/2024', type: 'PDF', webUrl: 'https://superapp.vn/policies/quy-dinh-phat-trien-mini-app', fileUrl: '/docs/policies/superapp/quy-dinh-phat-trien-mini-app.pdf', downloadUrl: '/docs/policies/superapp/quy-dinh-phat-trien-mini-app.pdf' },
+              { name: 'Tiêu chuẩn bảo mật API', description: 'Yêu cầu kỹ thuật cho việc kết nối hệ thống', date: '20/02/2024', type: 'DOCX', webUrl: 'https://superapp.vn/policies/tieu-chuan-bao-mat-api', fileUrl: '/docs/policies/superapp/tieu-chuan-bao-mat-api.docx', downloadUrl: '/docs/policies/superapp/tieu-chuan-bao-mat-api.docx' }
             ]
           },
           'guardcam': {
-            policies: [
-              { title: 'Quy định sử dụng dữ liệu Camera', date: '10/01/2024', type: 'PDF' },
-              { title: 'Quy trình xử lý sự cố an ninh', date: '15/02/2024', type: 'PDF' },
-              { title: 'Tiêu chuẩn lắp đặt thiết bị', date: '01/03/2024', type: 'PDF' }
+            policyItems: [
+              { name: 'Quy định sử dụng dữ liệu Camera', description: 'Quy trình trích xuất và lưu trữ dữ liệu hình ảnh', date: '10/01/2024', type: 'PDF', webUrl: 'https://guardcam.vn/policies/quy-dinh-su-dung-du-lieu-camera', fileUrl: '/docs/policies/guardcam/quy-dinh-su-dung-du-lieu-camera.pdf', downloadUrl: '/docs/policies/guardcam/quy-dinh-su-dung-du-lieu-camera.pdf' },
+              { name: 'Quy trình xử lý sự cố an ninh', description: 'Các bước ứng phó khi có báo động xâm nhập', date: '15/02/2024', type: 'PDF', webUrl: 'https://guardcam.vn/policies/quy-trinh-xu-ly-su-co-an-ninh', fileUrl: '/docs/policies/guardcam/quy-trinh-xu-ly-su-co-an-ninh.pdf', downloadUrl: '/docs/policies/guardcam/quy-trinh-xu-ly-su-co-an-ninh.pdf' },
+              { name: 'Tiêu chuẩn lắp đặt thiết bị', description: 'Quy chuẩn kỹ thuật cho đội ngũ thi công', date: '01/03/2024', type: 'PDF', webUrl: 'https://guardcam.vn/policies/tieu-chuan-lap-dat-thiet-bi', fileUrl: '/docs/policies/guardcam/tieu-chuan-lap-dat-thiet-bi.pdf', downloadUrl: '/docs/policies/guardcam/tieu-chuan-lap-dat-thiet-bi.pdf' }
             ]
           },
           'ecoop': {
-            policies: [
-              { title: 'Tiêu chuẩn kiểm soát nông sản', date: '01/01/2024', type: 'PDF' },
-              { title: 'Chính sách hỗ trợ xã viên', date: '15/01/2024', type: 'PDF' },
-              { title: 'Quy trình thanh toán nông hộ', date: '10/02/2024', type: 'PDF' }
+            policyItems: [
+              { name: 'Tiêu chuẩn kiểm soát nông sản', description: 'Quy trình kiểm tra dư lượng thuốc BVTV', date: '01/01/2024', type: 'PDF', webUrl: 'https://ecoop.vn/policies/tieu-chuan-kiem-soat-nong-san', fileUrl: '/docs/policies/ecoop/tieu-chuan-kiem-soat-nong-san.pdf', downloadUrl: '/docs/policies/ecoop/tieu-chuan-kiem-soat-nong-san.pdf' },
+              { name: 'Chính sách hỗ trợ xã viên', description: 'Các gói hỗ trợ vốn và kỹ thuật cho nông dân', date: '15/01/2024', type: 'PDF', webUrl: 'https://ecoop.vn/policies/chinh-sach-ho-tro-xa-vien', fileUrl: '/docs/policies/ecoop/chinh-sach-ho-tro-xa-vien.pdf', downloadUrl: '/docs/policies/ecoop/chinh-sach-ho-tro-xa-vien.pdf' },
+              { name: 'Quy trình thanh toán nông hộ', description: 'Thanh toán trực tiếp sau khi thu mua', date: '10/02/2024', type: 'PDF', webUrl: 'https://ecoop.vn/policies/quy-trinh-thanh-toan-nong-ho', fileUrl: '/docs/policies/ecoop/quy-trinh-thanh-toan-nong-ho.pdf', downloadUrl: '/docs/policies/ecoop/quy-trinh-thanh-toan-nong-ho.pdf' }
             ]
           },
           'default': {
-            policies: [
-              { title: 'Quy tắc ứng xử Tập đoàn', date: '01/01/2024', type: 'PDF' },
-              { title: 'Chính sách phúc lợi nhân viên', date: '01/01/2024', type: 'PDF' },
-              { title: 'Quy định bảo mật thông tin', date: '15/01/2024', type: 'PDF' }
-            ]
+            policyItems: [
+              { name: 'Quy tắc ứng xử Tập đoàn', description: 'Tiêu chuẩn đạo đức và hành vi tại nơi làm việc', date: '01/01/2024', type: 'PDF', webUrl: 'https://apecglobal.com/policies/quy-tac-ung-xu-tap-doan', fileUrl: '/docs/policies/default/quy-tac-ung-xu-tap-doan.pdf', downloadUrl: '/docs/policies/default/quy-tac-ung-xu-tap-doan.pdf' },
+              { name: 'Chính sách phúc lợi nhân viên', description: 'Chế độ bảo hiểm, nghỉ phép và thưởng', date: '01/01/2024', type: 'PDF', webUrl: 'https://apecglobal.com/policies/chinh-sach-phuc-loi-nhan-vien', fileUrl: '/docs/policies/default/chinh-sach-phuc-loi-nhan-vien.pdf', downloadUrl: '/docs/policies/default/chinh-sach-phuc-loi-nhan-vien.pdf' },
+              { name: 'Quy định bảo mật thông tin', description: 'Bảo vệ bí mật kinh doanh và dữ liệu tập đoàn', date: '15/01/2024', type: 'PDF', webUrl: 'https://apecglobal.com/policies/quy-dinh-bao-mat-thong-tin', fileUrl: '/docs/policies/default/quy-dinh-bao-mat-thong-tin.pdf', downloadUrl: '/docs/policies/default/quy-dinh-bao-mat-thong-tin.pdf' }
+            ],
+            experience: 'Văn bản hướng dẫn chung cho toàn Tập đoàn APEC GLOBAL'
           }
         })
       },
