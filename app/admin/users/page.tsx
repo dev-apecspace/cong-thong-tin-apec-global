@@ -156,7 +156,7 @@ export default function UsersPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Quản lý User & Phân quyền</h1>
           <p className="text-slate-500">Quản lý tài khoản truy cập CMS và giới hạn quyền hạn</p>
@@ -166,7 +166,7 @@ export default function UsersPage() {
           if (!open) resetForm()
         }}>
           <DialogTrigger asChild>
-            <Button className="bg-blue-600 hover:bg-blue-700 rounded-xl">
+            <Button className="bg-blue-600 hover:bg-blue-700 rounded-xl w-full sm:w-auto">
               <Plus className="mr-2 h-4 w-4" /> Thêm User mới
             </Button>
           </DialogTrigger>
@@ -280,11 +280,11 @@ export default function UsersPage() {
                   <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
                     <UserIcon className="h-6 w-6" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-slate-900">{user.full_name || user.email}</h3>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-slate-900 truncate">{user.full_name || user.email}</h3>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-slate-500 font-mono">{user.email}</span>
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase ${
+                      <span className="text-xs text-slate-500 font-mono truncate max-w-[150px]">{user.email}</span>
+                      <span className={`flex-shrink-0 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase ${
                         user.role === 'admin' ? 'bg-indigo-100 text-indigo-700' : 'bg-slate-100 text-slate-600'
                       }`}>
                         {user.role}

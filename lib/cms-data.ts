@@ -60,44 +60,44 @@ export const cmsData: SiteConfiguration = {
           'nam-thien-long': {
             summary: 'NAM THIÊN LONG là đơn vị tiên phong trong lĩnh vực gia công phần mềm và giải pháp chuyển đổi số tại Việt Nam, với đội ngũ kỹ sư giàu kinh nghiệm.',
             webLink: 'https://namthienlong.vn',
-            corporateInfo: { email: 'contact@namthienlong.vn', phone: '028 1234 5678', founded: '20/05/2012', ceo: 'Nguyễn Văn A', address: '72 Lê Thánh Tôn, Quận 1, TP.HCM', hotline: '1900 1234' },
-            legalInfo: { taxCode: '0102030405', issuedDate: '15/06/2012', issuedBy: 'Sở KH&ĐT TP.HCM', type: 'Công ty Cổ phần' }
+            corporateInfo: { 'Email': 'contact@namthienlong.vn', 'Số điện thoại': '028 1234 5678', 'Ngày thành lập': '20/05/2012', 'Người đại diện': 'Nguyễn Văn A', 'Địa chỉ': '72 Lê Thánh Tôn, Quận 1, TP.HCM', 'Hotline': '1900 1234' },
+            legalInfo: { 'Mã số thuế': '0102030405', 'Ngày cấp': '15/06/2012', 'Nơi cấp': 'Sở KH&ĐT TP.HCM', 'Loại hình': 'Công ty Cổ phần' }
           },
           'apec-bci': {
             summary: 'APEC BCI tập trung vào các giải pháp tài chính số và đầu tư mạo hiểm, kết nối các startup tiềm năng với nguồn vốn quốc tế.',
             webLink: 'https://apecbci.vn',
-            corporateInfo: { email: 'info@apecbci.vn', phone: '028 8888 9999', founded: '10/10/2015', ceo: 'Trần Thị B', address: 'VP APEC, Quận 7, TP.HCM', hotline: '1800 5555' },
-            legalInfo: { taxCode: '0908070605', issuedDate: '12/11/2015', issuedBy: 'Sở KH&ĐT TP.HCM', type: 'Công ty TNHH MTV' }
+            corporateInfo: { 'Email': 'info@apecbci.vn', 'Số điện thoại': '028 8888 9999', 'Ngày thành lập': '10/10/2015', 'Người đại diện': 'Trần Thị B', 'Địa chỉ': 'VP APEC, Quận 7, TP.HCM', 'Hotline': '1800 5555' },
+            legalInfo: { 'Mã số thuế': '0908070605', 'Ngày cấp': '12/11/2015', 'Nơi cấp': 'Sở KH&ĐT TP.HCM', 'Loại hình': 'Công ty TNHH MTV' }
           },
           'lifecare': {
             summary: 'LIFECARE mang đến hệ sinh thái chăm sóc sức khỏe toàn diện dựa trên nền tảng công nghệ sinh học và dữ liệu lớn.',
             webLink: 'https://lifecare.vn',
-            corporateInfo: { email: 'care@lifecare.vn', phone: '028 7777 6666', founded: '01/01/2018', ceo: 'Phạm Văn C', address: 'Tòa nhà Healthcare, Q.3, TP.HCM', hotline: '1900 8888' },
-            legalInfo: { taxCode: '1122334455', issuedDate: '05/01/2018', issuedBy: 'Sở Y Tế TP.HCM', type: 'Công ty Cổ phần Dịch vụ' }
+            corporateInfo: { 'Email': 'care@lifecare.vn', 'Số điện thoại': '028 7777 6666', 'Ngày thành lập': '01/01/2018', 'Người đại diện': 'Phạm Văn C', 'Địa chỉ': 'Tòa nhà Healthcare, Q.3, TP.HCM', 'Hotline': '1900 8888' },
+            legalInfo: { 'Mã số thuế': '1122334455', 'Ngày cấp': '05/01/2018', 'Nơi cấp': 'Sở Y Tế TP.HCM', 'Loại hình': 'Công ty Cổ phần Dịch vụ' }
           },
           'superapp': {
             summary: 'SUPERAPP là nền tảng đa dịch vụ phục vụ mọi nhu cầu hàng ngày của người dùng Việt, từ thanh toán đến thương mại điện tử.',
             webLink: 'https://superapp.vn',
-            corporateInfo: { email: 'dev@superapp.vn', phone: '028 2222 3333', founded: '15/03/2020', ceo: 'Lê Văn D', address: 'Digital Hub, Quận 2, TP.HCM', hotline: '1900 2020' },
-            legalInfo: { taxCode: '2233445566', issuedDate: '15/03/2020', issuedBy: 'Sở KH&ĐT TP.HCM', type: 'Công ty Công nghệ' }
+            corporateInfo: { 'Email': 'dev@superapp.vn', 'Số điện thoại': '028 2222 3333', 'Ngày thành lập': '15/03/2020', 'Người đại diện': 'Lê Văn D', 'Địa chỉ': 'Digital Hub, Quận 2, TP.HCM', 'Hotline': '1900 2020' },
+            legalInfo: { 'Mã số thuế': '2233445566', 'Ngày cấp': '15/03/2020', 'Nơi cấp': 'Sở KH&ĐT TP.HCM', 'Loại hình': 'Công ty Công nghệ' }
           },
           'guardcam': {
             summary: 'GUARDCAM dẫn đầu thị trường camera AI và các giải pháp an ninh thông minh cho đô thị và hộ gia đình.',
             webLink: 'https://guardcam.vn',
-            corporateInfo: { email: 'security@guardcam.vn', phone: '028 4444 5555', founded: '20/08/2019', ceo: 'Hoàng Văn E', address: 'Security Center, Q.Tân Bình, TP.HCM', hotline: '1900 9999' },
-            legalInfo: { taxCode: '3344556677', issuedDate: '20/08/2019', issuedBy: 'Sở KH&ĐT TP.HCM', type: 'Công ty Dịch vụ An ninh' }
+            corporateInfo: { 'Email': 'security@guardcam.vn', 'Số điện thoại': '028 4444 5555', 'Ngày thành lập': '20/08/2019', 'Người đại diện': 'Hoàng Văn E', 'Địa chỉ': 'Security Center, Q.Tân Bình, TP.HCM', 'Hotline': '1900 9999' },
+            legalInfo: { 'Mã số thuế': '3344556677', 'Ngày cấp': '20/08/2019', 'Nơi cấp': 'Sở KH&ĐT TP.HCM', 'Loại hình': 'Công ty Dịch vụ An ninh' }
           },
           'ecoop': {
             summary: 'ECOOP kết nối trực tiếp nông dân với người tiêu dùng thông qua nền tảng thương mại điện tử và chuỗi cung ứng thông minh.',
             webLink: 'https://ecoop.vn',
-            corporateInfo: { email: 'agri@ecoop.vn', phone: '028 5555 6666', founded: '12/12/2021', ceo: 'Đặng Thị F', address: 'AgriTech Park, Củ Chi, TP.HCM', hotline: '1800 6666' },
-            legalInfo: { taxCode: '4455667788', issuedDate: '12/12/2021', issuedBy: 'Sở NN&PTNT TP.HCM', type: 'Hợp tác xã Công nghệ cao' }
+            corporateInfo: { 'Email': 'agri@ecoop.vn', 'Số điện thoại': '028 5555 6666', 'Ngày thành lập': '12/12/2021', 'Người đại diện': 'Đặng Thị F', 'Địa chỉ': 'AgriTech Park, Củ Chi, TP.HCM', 'Hotline': '1800 6666' },
+            legalInfo: { 'Mã số thuế': '4455667788', 'Ngày cấp': '12/12/2021', 'Nơi cấp': 'Sở NN&PTNT TP.HCM', 'Loại hình': 'Hợp tác xã Công nghệ cao' }
           },
           'default': {
             summary: 'APEC GLOBAL là tập đoàn đa ngành hàng đầu, tiên phong trong việc kiến tạo các giải pháp công nghệ và dịch vụ sáng tạo.',
             webLink: 'https://apecglobal.com',
-            corporateInfo: { email: 'info@apecglobal.com', phone: '028 0000 1111', founded: '2010', ceo: 'Ban điều hành', address: 'Trụ sở chính APEC Global', hotline: '1800 1000' },
-            legalInfo: { taxCode: '1234567890', issuedDate: '01/01/2010', issuedBy: 'Sở KH&ĐT TP.HCM', type: 'Thành viên Tập đoàn' }
+            corporateInfo: { 'Email': 'info@apecglobal.com', 'Số điện thoại': '028 0000 1111', 'Ngày thành lập': '2010', 'Người đại diện': 'Ban điều hành', 'Địa chỉ': 'Trụ sở chính APEC Global', 'Hotline': '1800 1000' },
+            legalInfo: { 'Mã số thuế': '1234567890', 'Ngày cấp': '01/01/2010', 'Nơi cấp': 'Sở KH&ĐT TP.HCM', 'Loại hình': 'Thành viên Tập đoàn' }
           }
         })
       },

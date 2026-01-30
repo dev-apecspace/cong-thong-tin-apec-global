@@ -111,8 +111,8 @@ export default function LoginPage() {
               </div>
             </div>
             <div className="space-y-2">
-              <div className="flex items-center justify-between ml-1">
-                <Label htmlFor="password" className="text-slate-700 font-semibold">Mật khẩu</Label>
+              <div className="flex flex-wrap items-center justify-between gap-1 ml-1">
+                <Label htmlFor="password" title="password" className="text-slate-700 font-semibold">Mật khẩu</Label>
                 <button type="button" className="text-xs text-blue-600 hover:underline font-medium">Quên mật khẩu?</button>
               </div>
               <div className="relative group">

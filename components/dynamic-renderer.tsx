@@ -92,11 +92,11 @@ function RenderField({ field, value }: { field: FieldConfig; value: any }) {
             {value.map((rawItem: any, i: number) => {
               // Normalize string items into objects so policies defined as simple strings still render like capability items
               const item = typeof rawItem === 'string' ? { title: rawItem } : rawItem || {};
-              const title = item.title || item.name || `Item ${i + 1}`;
-              const description = item.description || item.desc || '';
-              const webUrl = item.webUrl || item.webLink || item.url;
-              const fileUrl = item.fileUrl || item.file || null;
-              const downloadUrl = item.downloadUrl || item.download || null;
+              const title = item.title || item.name || item.Tiêu_đề || item.Tên || `Item ${i + 1}`;
+              const description = item.description || item.desc || item.Mô_tả || '';
+              const webUrl = item.webUrl || item.webLink || item.url || item.Liên_kết_Web;
+              const fileUrl = item.fileUrl || item.file || item.Liên_kết_File || null;
+              const downloadUrl = item.downloadUrl || item.download || item.Tải_về || null;
 
               return (
                 <Card key={i} className="bg-[#0b1224] border-white/5 hover:border-white/10 hover:shadow-md transition-all">
@@ -394,10 +394,10 @@ function RenderField({ field, value }: { field: FieldConfig; value: any }) {
             )}
             {value.map((rawItem, i) => {
               const item = typeof rawItem === 'string' ? { title: rawItem } : rawItem || {};
-              const title = item.title || item.name || `Item ${i + 1}`;
-              const webUrl = item.webUrl || item.webLink || item.url;
-              const fileUrl = item.fileUrl || item.file || null;
-              const downloadUrl = item.downloadUrl || item.download || null;
+              const title = item.title || item.name || item.Tiêu_đề || item.Tên || `Item ${i + 1}`;
+              const webUrl = item.webUrl || item.webLink || item.url || item.Liên_kết || null;
+              const fileUrl = item.fileUrl || item.file || item.Tài_liệu || null;
+              const downloadUrl = item.downloadUrl || item.download || item.Tải_về || null;
 
               return (
                 <div key={i} className="bg-[#0b1224] border border-white/5 rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:bg-white/5 hover:border-white/10 transition-all group">
@@ -411,23 +411,23 @@ function RenderField({ field, value }: { field: FieldConfig; value: any }) {
                       <h4 className="text-base sm:text-lg font-bold text-white group-hover:text-cyan-400 transition-colors break-words">{title}</h4>
                       
                       {/* Hiển thị nội dung/mô tả cho News/List */}
-                      {(item.description || item.content || item.summary) && (
+                      {(item.description || item.content || item.summary || item.Mô_tả || item.Nội_dung) && (
                         <p className="text-slate-400 text-sm mt-2 leading-relaxed line-clamp-3">
-                          {item.description || item.content || item.summary}
+                          {item.description || item.content || item.summary || item.Mô_tả || item.Nội_dung}
                         </p>
                       )}
 
-                      {(item.date || item.category) && (
+                      {(item.date || item.category || item.Ngày || item.Phân_loại) && (
                         <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-3">
-                          {item.date && (
+                          {(item.date || item.Ngày) && (
                             <div className="flex items-center gap-1 sm:gap-1.5 text-xs text-slate-500 font-medium">
                               <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                              <span>{item.date}</span>
+                              <span>{item.date || item.Ngày}</span>
                             </div>
                           )}
-                          {item.category && (
+                          {(item.category || item.Phân_loại) && (
                             <Badge variant="outline" className="text-[10px] sm:text-xs bg-cyan-500/5 text-cyan-400 border-cyan-500/20 px-2 py-0.5">
-                              {item.category}
+                              {item.category || item.Phân_loại}
                             </Badge>
                           )}
                         </div>

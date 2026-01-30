@@ -121,10 +121,10 @@ export default function AdminLayout({
     <div className="flex min-h-screen bg-slate-50 text-slate-900">
       {/* Sidebar */}
       <aside className={cn(
-        "fixed inset-y-0 left-0 z-50 w-64 transform bg-white border-r border-slate-200 shadow-sm transition-transform duration-300 ease-in-out",
+        "fixed inset-y-0 left-0 z-50 w-64 transform bg-white border-r border-slate-200 shadow-sm transition-transform duration-300 ease-in-out flex flex-col",
         !isSidebarOpen && "-translate-x-full"
       )}>
-        <div className="flex h-16 items-center justify-between px-6 border-b border-slate-100">
+        <div className="flex h-16 items-center justify-between px-6 border-b border-slate-100 flex-shrink-0">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
               <Box className="h-5 w-5 text-white" />
@@ -138,7 +138,7 @@ export default function AdminLayout({
           </Button>
         </div>
         
-        <nav className="mt-6 px-4 space-y-1">
+        <nav className="flex-1 overflow-y-auto mt-6 px-4 space-y-1">
           {menuItems.map((item) => {
             const isActive = pathname === item.href
             return (
@@ -162,14 +162,14 @@ export default function AdminLayout({
           })}
         </nav>
 
-        <div className="absolute bottom-6 w-full px-4 space-y-2">
+        <div className="p-4 border-t border-slate-100 space-y-2 flex-shrink-0">
           <Button 
             variant="ghost" 
             className="w-full justify-start text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-xl"
             onClick={() => setIsPasswordModalOpen(true)}
           >
             <KeyRound className="mr-3 h-5 w-5" />
-            <span className="font-medium">Đổi mật khẩu</span>
+            <span className="font-medium text-sm">Đổi mật khẩu</span>
           </Button>
           <Button 
             variant="ghost" 
@@ -177,7 +177,7 @@ export default function AdminLayout({
             onClick={handleLogout}
           >
             <LogOut className="mr-3 h-5 w-5" />
-            <span className="font-medium">Đăng xuất</span>
+            <span className="font-medium text-sm">Đăng xuất</span>
           </Button>
         </div>
       </aside>
@@ -238,15 +238,15 @@ export default function AdminLayout({
 
       {/* Main Content */}
       <main className={cn(
-        "flex-1 transition-all duration-300",
-        isSidebarOpen ? "lg:ml-64" : "ml-0"
+        "flex-1 transition-all duration-300 min-h-screen",
+        isSidebarOpen ? "lg:pl-64" : "pl-0"
       )}>
-        <header className="h-16 flex items-center justify-between px-8 bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30">
-          <div className="flex items-center">
-            <Button variant="ghost" size="icon" onClick={() => setIsSidebarOpen(true)} className={cn("mr-4", isSidebarOpen && "hidden")}>
+        <header className="h-16 flex items-center justify-between px-4 sm:px-8 bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30">
+          <div className="flex items-center min-w-0">
+            <Button variant="ghost" size="icon" onClick={() => setIsSidebarOpen(true)} className={cn("mr-2 sm:mr-4 shrink-0", isSidebarOpen && "hidden")}>
               <Menu className="h-6 w-6 text-slate-600" />
             </Button>
-            <h1 className="text-lg font-semibold text-slate-800">
+            <h1 className="text-base sm:text-lg font-semibold text-slate-800 truncate">
               {menuItems.find(i => i.href === pathname)?.name || 'Bảng điều khiển'}
             </h1>
           </div>
