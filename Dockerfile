@@ -43,4 +43,4 @@ COPY --from=build /app/next.config.* ./
 
 EXPOSE 3015
 
-CMD ["pnpm", "start"]
+CMD ["pnpm", "start", "-p", "3015"]
