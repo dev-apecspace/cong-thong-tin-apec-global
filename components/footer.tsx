@@ -90,19 +90,19 @@ export function Footer({ config }: FooterProps) {
   }, []);
 
   return (
-    <footer className="w-full bg-slate-950 border-t border-cyan-500/20 pt-8 md:pt-16 pb-4 md:pb-8 relative overflow-hidden">
+    <footer className="w-full bg-white border-t border-slate-200 pt-8 md:pt-16 pb-4 md:pb-8 relative overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-96 bg-cyan-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-96 bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Projects Slider - Futurized */}
         <div className="mb-8 md:mb-16">
           <div className="flex items-center gap-4 mb-4 md:mb-6">
-            <div className="h-[1px] flex-1 bg-gradient-to-l from-cyan-500/30 to-transparent" />
-            <h3 className="text-[10px] font-mono text-cyan-500/80 uppercase tracking-[0.3em] whitespace-nowrap">
+            <div className="h-[1px] flex-1 bg-gradient-to-l from-slate-200 to-transparent" />
+            <h3 className="text-[10px] font-mono text-slate-400 uppercase tracking-[0.3em] whitespace-nowrap">
               THÀNH_VIÊN_TẬP_ĐOÀN
             </h3>
-            <div className="h-[1px] flex-1 bg-gradient-to-r from-cyan-500/30 to-transparent" />
+            <div className="h-[1px] flex-1 bg-gradient-to-r from-slate-200 to-transparent" />
           </div>
           <div 
             ref={projectScrollRef}
@@ -112,7 +112,7 @@ export function Footer({ config }: FooterProps) {
               {[...config.projects, ...config.projects].map((project, index) => (
                 <div 
                   key={`project-${index}`}
-                  className="bg-slate-900/50 backdrop-blur-md rounded-2xl p-2 md:p-[10px] border border-white/10 hover:border-cyan-500/50 active:border-cyan-400 shadow-xl transition-all duration-300 flex-shrink-0 group flex items-center justify-center cursor-pointer hover:scale-105 active:scale-95"
+                  className="bg-white rounded-2xl p-2 md:p-[10px] border border-slate-100 hover:border-blue-500/50 shadow-sm transition-all duration-300 flex-shrink-0 group flex items-center justify-center cursor-pointer hover:scale-105"
                 >
                   <Image 
                     src={project.logo || "/placeholder.svg"}
@@ -130,11 +130,11 @@ export function Footer({ config }: FooterProps) {
         {/* Partners Slider - Futurized */}
         <div className="mb-10 md:mb-20">
           <div className="flex items-center gap-4 mb-4 md:mb-6">
-            <div className="h-[1px] flex-1 bg-gradient-to-l from-cyan-500/30 to-transparent" />
-            <h3 className="text-[10px] font-mono text-cyan-500/80 uppercase tracking-[0.3em] whitespace-nowrap">
+            <div className="h-[1px] flex-1 bg-gradient-to-l from-slate-200 to-transparent" />
+            <h3 className="text-[10px] font-mono text-slate-400 uppercase tracking-[0.3em] whitespace-nowrap">
               ĐỐI_TÁC_CHIẾN_LƯỢC
             </h3>
-            <div className="h-[1px] flex-1 bg-gradient-to-r from-cyan-500/30 to-transparent" />
+            <div className="h-[1px] flex-1 bg-gradient-to-r from-slate-200 to-transparent" />
           </div>
           <div 
             ref={partnerScrollRef}
@@ -146,7 +146,7 @@ export function Footer({ config }: FooterProps) {
                 [...Array(6)].map((_, index) => (
                   <div 
                     key={`skeleton-${index}`}
-                    className="bg-slate-900/50 backdrop-blur-md rounded-2xl p-2 md:p-[10px] border border-white/10 shadow-xl flex-shrink-0 flex items-center justify-center w-32 md:w-48 h-20 md:h-32 animate-pulse"
+                    className="bg-white rounded-2xl p-2 md:p-[10px] border border-slate-100 shadow-sm flex-shrink-0 flex items-center justify-center w-32 md:w-48 h-20 md:h-32 animate-pulse"
                   />
                 ))
               ) : partners.length > 0 ? (
@@ -154,7 +154,7 @@ export function Footer({ config }: FooterProps) {
                 [...partners, ...partners].map((partner, index) => (
                   <div 
                     key={`partner-${index}`}
-                    className="bg-slate-900/50 backdrop-blur-md rounded-2xl p-2 md:p-[10px] border border-white/10 hover:border-cyan-500/50 active:border-cyan-400 shadow-xl transition-all duration-300 flex-shrink-0 group flex items-center justify-center cursor-pointer hover:scale-105 active:scale-95"
+                    className="bg-white rounded-2xl p-2 md:p-[10px] border border-slate-100 hover:border-blue-500/50 shadow-sm transition-all duration-300 flex-shrink-0 group flex items-center justify-center cursor-pointer hover:scale-105"
                   >
                     <Image 
                       src={partner.logo || "/placeholder.svg"}
@@ -174,47 +174,46 @@ export function Footer({ config }: FooterProps) {
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t border-white/5 pt-8 md:pt-16">
+        <div className="border-t border-slate-200 pt-8 md:pt-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-16">
             {/* Company Info */}
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-2 group cursor-pointer">
                 <div className="relative">
-                  <div className="absolute inset-0 bg-cyan-400/10 blur-xl rounded-full scale-0 group-hover:scale-125 transition-transform duration-700" />
                   <Image
                     src={config.company.logo}
                     alt={config.company.logoAlt}
                     width={40}
                     height={40}
-                    className="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(34,211,238,0.3)] group-hover:drop-shadow-[0_0_12px_rgba(34,211,238,0.6)] transition-all duration-500 relative z-10"
+                    className="w-12 h-12 object-contain transition-all duration-500 relative z-10"
                   />
                 </div>
                 <div className="flex flex-col">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-xl font-black italic tracking-tighter text-white group-hover:text-cyan-400 transition-colors leading-none drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]">
+                    <span className="text-xl font-black italic tracking-tighter text-slate-900 group-hover:text-blue-600 transition-colors leading-none">
                       {config.company.shortName}
                     </span>
-                    <span className="text-xl font-light tracking-widest text-cyan-400 leading-none drop-shadow-[0_0_10px_rgba(34,211,238,0.3)] uppercase">
+                    <span className="text-xl font-light tracking-widest text-blue-600 leading-none uppercase">
                       {config.company.brandName}
                     </span>
                   </div>
                   {config.company.slogan && (
                     <div className="flex items-center gap-1 mt-1">
-                      <span className="text-[6px] font-bold tracking-[0.2em] text-cyan-400/60 group-hover:text-cyan-400 uppercase whitespace-nowrap transition-colors">
+                      <span className="text-[6px] font-bold tracking-[0.2em] text-slate-400 group-hover:text-blue-600 uppercase whitespace-nowrap transition-colors">
                         {config.company.slogan}
                       </span>
                     </div>
                   )}
                 </div>
               </div>
-              <p className="text-sm text-slate-400 leading-relaxed font-light">
+              <p className="text-sm text-slate-500 leading-relaxed font-light">
                 HẠ TẦNG TOÀN CẦU VÀ HỆ SINH THÁI SỐ CHO THẾ HỆ KINH DOANH VÀ CÔNG NGHỆ TIẾP THEO.
               </p>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6">
+              <h3 className="text-xs font-bold text-slate-900 uppercase tracking-widest mb-6">
                 ĐIỀU HƯỚNG
               </h3>
               <ul className="space-y-4">
@@ -222,9 +221,9 @@ export function Footer({ config }: FooterProps) {
                   <li key={link}>
                     <a
                       href="#"
-                      className="text-sm text-slate-400 hover:text-cyan-400 transition-all duration-300 flex items-center gap-2 group"
+                      className="text-sm text-slate-500 hover:text-blue-600 transition-all duration-300 flex items-center gap-2 group"
                     >
-                      <div className="w-1 h-1 bg-cyan-500/20 group-hover:bg-cyan-500 rounded-full transition-all" />
+                      <div className="w-1 h-1 bg-slate-200 group-hover:bg-blue-600 rounded-full transition-all" />
                       {link}
                     </a>
                   </li>
@@ -234,34 +233,34 @@ export function Footer({ config }: FooterProps) {
 
             {/* Contact */}
             <div>
-              <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6">
+              <h3 className="text-xs font-bold text-slate-900 uppercase tracking-widest mb-6">
                 KẾT NỐI
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-cyan-500 text-xs font-mono">
+                  <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 text-[10px] font-mono">
                     THƯ
                   </div>
-                  <span className="text-sm text-slate-400">uplink@apec.global</span>
+                  <span className="text-sm text-slate-500">uplink@apec.global</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-cyan-500 text-xs font-mono">
+                  <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 text-[10px] font-mono">
                     ĐT
                   </div>
-                  <span className="text-sm text-slate-400">+84 24 335 1292</span>
+                  <span className="text-sm text-slate-500">+84 24 335 1292</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Copyright */}
-          <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">
+          <div className="border-t border-slate-200 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">
               {config.footer.copyright}
             </p>
-            <div className="flex gap-6 text-[10px] font-mono text-cyan-500/40 uppercase">
-              <span>ĐIỀU_KHOẢN_DỊCH_VỤ</span>
-              <span>GIAO_THỨC_BẢO_MẬT</span>
+            <div className="flex gap-6 text-[10px] font-mono text-slate-300 uppercase">
+              <span className="hover:text-blue-600 cursor-pointer transition-colors">ĐIỀU_KHOẢN_DỊCH_VỤ</span>
+              <span className="hover:text-blue-600 cursor-pointer transition-colors">GIAO_THỨC_BẢO_MẬT</span>
             </div>
           </div>
         </div>

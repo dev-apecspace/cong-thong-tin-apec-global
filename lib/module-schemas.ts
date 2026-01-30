@@ -167,9 +167,10 @@ export const MODULE_SCHEMAS: Record<string, any> = {
         type: 'link',
       },
       {
-        key: 'careerLevels',
+        key: 'items',
         label: 'Lộ trình sự nghiệp',
         type: 'list',
+        icon: 'GraduationCap',
       },
     ],
   },

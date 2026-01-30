@@ -53,6 +53,8 @@ export const cmsData: SiteConfiguration = {
         icon: 'Building2',
         order: 1,
         isVisible: true,
+        textColor: '#1e40af', // Deep blue
+        textColorHover: '#2563eb',
         route: '/company-info',
         backgroundImage: '/cards/corporate-info.jpg',
         projects: commonProjects,
@@ -76,10 +78,22 @@ export const cmsData: SiteConfiguration = {
             legalInfo: { 'Mã số thuế': '1122334455', 'Ngày cấp': '05/01/2018', 'Nơi cấp': 'Sở Y Tế TP.HCM', 'Loại hình': 'Công ty Cổ phần Dịch vụ' }
           },
           'superapp': {
-            summary: 'SUPERAPP là nền tảng đa dịch vụ phục vụ mọi nhu cầu hàng ngày của người dùng Việt, từ thanh toán đến thương mại điện tử.',
-            webLink: 'https://superapp.vn',
-            corporateInfo: { 'Email': 'dev@superapp.vn', 'Số điện thoại': '028 2222 3333', 'Ngày thành lập': '15/03/2020', 'Người đại diện': 'Lê Văn D', 'Địa chỉ': 'Digital Hub, Quận 2, TP.HCM', 'Hotline': '1900 2020' },
-            legalInfo: { 'Mã số thuế': '2233445566', 'Ngày cấp': '15/03/2020', 'Nơi cấp': 'Sở KH&ĐT TP.HCM', 'Loại hình': 'Công ty Công nghệ' }
+            "Tóm tắt": "SUPERAPP là nền tảng đa dịch vụ phục vụ mọi nhu cầu hàng ngày của người dùng Việt, từ thanh toán đến thương mại điện tử.",
+            "Liên kết website": "https://superapp.vn",
+            "Thông tin pháp lý": {
+              "Ngày cấp": "15/03/2020",
+              "Cơ quan cấp": "Sở KH&ĐT TP.HCM",
+              "Mã số thuế": "2233445566",
+              "Loại hình doanh nghiệp": "Công ty Công nghệ"
+            },
+            "Thông tin doanh nghiệp": {
+              "Email": "dev@superapp.vn",
+              "Hotline": "1900 2020",
+              "Địa chỉ": "Digital Hub, Quận 2, TP.HCM",
+              "Ngày thành lập": "15/03/2020",
+              "Số điện thoại": "028 2222 3333",
+              "Giám đốc điều hành": "Lê Văn D"
+            }
           },
           'guardcam': {
             summary: 'GUARDCAM dẫn đầu thị trường camera AI và các giải pháp an ninh thông minh cho đô thị và hộ gia đình.',
@@ -108,6 +122,8 @@ export const cmsData: SiteConfiguration = {
         icon: 'Briefcase',
         order: 2,
         isVisible: true,
+        textColor: '#b45309', // Amber/Gold
+        textColorHover: '#d97706',
         route: '/capabilities',
         backgroundImage: '/cards/capabilities.jpg',
         projects: commonProjects,
@@ -187,6 +203,8 @@ export const cmsData: SiteConfiguration = {
         icon: 'FileText',
         order: 3,
         isVisible: true,
+        textColor: '#047857', // Emerald
+        textColorHover: '#059669',
         route: '/policies',
         backgroundImage: '/cards/policy.jpg',
         projects: commonProjects,
@@ -251,40 +269,42 @@ export const cmsData: SiteConfiguration = {
         icon: 'TrendingUp',
         order: 4,
         isVisible: true,
+        textColor: '#0ea5e9', // Cyan/Sky
+        textColorHover: '#0284c7',
         route: '/career-path',
         backgroundImage: '/cards/career.jpg',
         projects: commonProjects,
         details: generateDetails(commonProjects, {
           'nam-thien-long': {
-            careerLevels: [
+            items: [
               { title: 'Junior Developer', period: '0-2 năm', skills: 'Kỹ năng lập trình cơ bản' },
               { title: 'Senior Developer', period: '3-5 năm', skills: 'Làm chủ hệ thống, Mentor Junior' },
               { title: 'Technical Lead', period: '5-8 năm', skills: 'Quản lý đội ngũ, Kiến trúc hệ thống' }
             ]
           },
           'superapp': {
-            careerLevels: [
+            items: [
               { title: 'Product Trainee', period: '0-1 năm', skills: 'Tư duy sản phẩm, Phân tích nghiệp vụ' },
               { title: 'Product Owner', period: '2-4 năm', skills: 'Quản lý roadmap, Tối ưu trải nghiệm' },
               { title: 'Product Director', period: '5-10 năm', skills: 'Chiến lược hệ sinh thái số' }
             ]
           },
           'guardcam': {
-            careerLevels: [
+            items: [
               { title: 'AI Research Engineer', period: '0-3 năm', skills: 'Thuật toán Computer Vision' },
               { title: 'Senior AI Engineer', period: '4-7 năm', skills: 'Tối ưu hóa mô hình thực tế' },
               { title: 'Chief Technology Officer', period: '10+ năm', skills: 'Định hướng công nghệ an ninh' }
             ]
           },
           'ecoop': {
-            careerLevels: [
+            items: [
               { title: 'Supply Chain Specialist', period: '0-2 năm', skills: 'Điều phối nông sản, Logistics' },
               { title: 'Supply Chain Manager', period: '3-6 năm', skills: 'Quản trị chuỗi cung ứng nông sản' },
               { title: 'Regional Director', period: '7+ năm', skills: 'Phát triển thị trường vùng miền' }
             ]
           },
           'default': {
-            careerLevels: [
+            items: [
               { title: 'Nhân viên (Staff)', period: '0-2 năm', skills: 'Kỹ năng chuyên môn nền tảng' },
               { title: 'Chuyên viên (Specialist)', period: '2-5 năm', skills: 'Giải quyết vấn đề phức tạp' },
               { title: 'Quản lý (Manager)', period: '5-10 năm', skills: 'Quản trị nhân sự và mục tiêu' },
@@ -300,6 +320,8 @@ export const cmsData: SiteConfiguration = {
         icon: 'Calendar',
         order: 5,
         isVisible: true,
+        textColor: '#ea580c', // Orange
+        textColorHover: '#f97316',
         route: '/events',
         backgroundImage: '/cards/events.jpg',
         projects: commonProjects,
@@ -344,6 +366,8 @@ export const cmsData: SiteConfiguration = {
         icon: 'Megaphone',
         order: 6,
         isVisible: true,
+        textColor: '#475569', // Slate/Blue-Gray
+        textColorHover: '#334155',
         route: '/news',
         backgroundImage: '/cards/news.jpg',
         projects: commonProjects,
@@ -388,6 +412,8 @@ export const cmsData: SiteConfiguration = {
         icon: 'Lightbulb',
         order: 7,
         isVisible: true,
+        textColor: '#7c3aed', // Violet
+        textColorHover: '#8b5cf6',
         route: '/initiatives',
         backgroundImage: '/cards/innovation.jpg',
         projects: commonProjects,
@@ -432,6 +458,8 @@ export const cmsData: SiteConfiguration = {
         icon: 'Trophy',
         order: 8,
         isVisible: true,
+        textColor: '#be123c', // Rose
+        textColorHover: '#e11d48',
         route: '/recognition',
         backgroundImage: '/cards/awards.jpg',
         projects: commonProjects,
@@ -476,6 +504,8 @@ export const cmsData: SiteConfiguration = {
         icon: 'HelpCircle',
         order: 9,
         isVisible: true,
+        textColor: '#0369a1', // Sky
+        textColorHover: '#0284c7',
         route: '/guidelines',
         backgroundImage: '/cards/guidelines.jpg',
         projects: commonProjects,
@@ -509,6 +539,29 @@ export const cmsData: SiteConfiguration = {
               { title: 'Sổ tay nhân viên điện tử', date: '01/01/2024', category: 'Văn hóa' },
               { title: 'Hướng dẫn an toàn thông tin', date: '05/01/2024', category: 'Bảo mật' },
               { title: 'Quy trình vận hành chuẩn (SOP)', date: '10/01/2024', category: 'Vận hành' }
+            ]
+          }
+        })
+      },
+      {
+        id: 'feedback',
+        title: 'FEEDBACK\n& HỖ TRỢ',
+        description: 'GỬI PHẢN HỒI VÀ YÊU CẦU HỖ TRỢ',
+        icon: 'MessagesSquare',
+        order: 10,
+        isVisible: true,
+        textColor: '#db2777', // Pink/Magenta
+        textColorHover: '#ec4899',
+        route: '/feedback',
+        backgroundImage: '/cards/feedback.jpg',
+        projects: commonProjects,
+        details: generateDetails(commonProjects, {
+          'default': {
+            summary: 'CHÚNG TÔI LUÔN LẮNG NGHE Ý KIẾN ĐÓNG GÓP CỦA BẠN ĐỂ CẢI THIỆN DỊCH VỤ.',
+            contact: { 'Hotline': '1900 1000', 'Email': 'support@apecglobal.com' },
+            faq: [
+              { q: 'Làm thế nào để gửi phản hồi?', a: 'Bạn có thể gửi qua form trực tuyến hoặc gọi hotline.' },
+              { q: 'Thời gian phản hồi là bao lâu?', a: 'Thông thường trong vòng 24h làm việc.' }
             ]
           }
         })
