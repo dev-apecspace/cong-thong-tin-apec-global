@@ -83,16 +83,25 @@ export default function ModuleEditForm({ module, projects, details }: any) {
 
       // 2. Update project details
       for (const projectId of Object.keys(projectDetails)) {
-        let parsedContent
+        let parsedContent = {}
         try {
-          parsedContent = JSON.parse(projectDetails[projectId].json)
+          const jsonStr = projectDetails[projectId].json.trim()
+          parsedContent = jsonStr ? JSON.parse(jsonStr) : {}
         } catch (e) {
-          throw new Error(`JSON không hợp lệ ở project ${projectId}`)
+          throw new Error(`JSON không hợp lệ ở project ${projectId}. Vui lòng kiểm tra lại định dạng JSON.`)
         }
 
         // Add externalUrl back if it exists
         if (projectDetails[projectId].externalUrl) {
-          parsedContent.externalUrl = projectDetails[projectId].externalUrl
+          parsedContent = {
+            ...parsedContent,
+            externalUrl: projectDetails[projectId].externalUrl.trim()
+          }
+        } else {
+          // If externalUrl is empty in the field, ensure it's removed from content
+          const newContent = { ...parsedContent }
+          delete (newContent as any).externalUrl
+          parsedContent = newContent
         }
 
         const { error: detailError } = await supabase
@@ -387,7 +396,28 @@ export default function ModuleEditForm({ module, projects, details }: any) {
 
                         {/* External URL Field - Always visible */}
                         <div className="space-y-3">
-                          <Label className="text-slate-700 font-semibold">🔗 Redirect sang trang web khác (tùy chọn)</Label>
+                          <div className="flex items-center justify-between">
+                            <Label className="text-slate-700 font-semibold">🔗 Redirect sang trang web khác (tùy chọn)</Label>
+                            {projectDetails[p.id].externalUrl && (
+                              <Button 
+                                type="button" 
+                                variant="outline" 
+                                size="sm" 
+                                className="h-8 text-[10px] uppercase font-bold tracking-wider rounded-lg border-blue-200 text-blue-600 hover:bg-blue-50 px-3"
+                                onClick={() => {
+                                  const url = projectDetails[p.id].externalUrl;
+                                  const newDetails = { ...projectDetails };
+                                  Object.keys(newDetails).forEach(id => {
+                                    newDetails[id] = { ...newDetails[id], externalUrl: url };
+                                  });
+                                  setProjectDetails(newDetails);
+                                  toast.success('Đã áp dụng URL này cho tất cả dự án. Đừng quên nhấn Lưu ở trên!');
+                                }}
+                              >
+                                Áp dụng cho tất cả dự án
+                              </Button>
+                            )}
+                          </div>
                           <Input 
                             type="url"
                             value={projectDetails[p.id].externalUrl} 
