@@ -122,31 +122,36 @@ export function ModuleNavigation({
   const handleCardClick = (module: CMSModule, e: React.MouseEvent) => {
     e.preventDefault();
 
-    // Debug: expose module details so we can inspect where externalUrl is stored
-    // (open browser console to see this when clicking a module)
-    // eslint-disable-next-line no-console
-    console.debug('Module clicked:', module.id, module.title, module.details);
+    // 1. Check all project details for an externalUrl
+    // If we find any, we redirect. We prioritize the first one found or the first project.
+    let redirectUrl = null;
 
-    // Prefer the first project's detail (same behavior as modal default tab)
-    const firstProjectName = module.projects?.[0]?.name;
-    const firstDetail = firstProjectName ? module.details?.[firstProjectName] : null;
-    if (firstDetail?.externalUrl) {
-      window.open(firstDetail.externalUrl, '_blank');
-      return;
-    }
-
-    // Fallback: if any project's detail contains an externalUrl, use the first found
     if (module.details) {
-      for (const key of Object.keys(module.details)) {
-        const d = module.details[key];
-        if (d?.externalUrl) {
-          window.open(d.externalUrl, '_blank');
-          return;
+      // First, try the first project in the list (if it exists)
+      const firstProjectName = module.projects?.[0]?.name;
+      if (firstProjectName && module.details[firstProjectName]?.externalUrl) {
+        redirectUrl = module.details[firstProjectName].externalUrl;
+      } 
+      
+      // Fallback: If first project doesn't have it, check ANY project
+      if (!redirectUrl) {
+        for (const projectName of Object.keys(module.details)) {
+          if (module.details[projectName]?.externalUrl) {
+            redirectUrl = module.details[projectName].externalUrl;
+            break;
+          }
         }
       }
     }
 
-    // No externalUrl found: open the modal
+    // 2. If we found a redirect URL, open it
+    if (redirectUrl) {
+      console.log('Redirecting to:', redirectUrl);
+      window.open(redirectUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    // 3. No externalUrl found: open the modal
     setSelectedModule(module);
     setIsModalOpen(true);
   };
