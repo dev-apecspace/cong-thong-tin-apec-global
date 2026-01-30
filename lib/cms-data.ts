@@ -22,7 +22,7 @@ export const cmsData: SiteConfiguration = {
   projects: commonProjects,
   company: {
     name: 'APEC GLOBAL',
-    logo: '/logo1.png',
+    logo: '/favi.png',
     logoAlt: 'APEC GLOBAL Logo',
     slogan: 'KIẾN TẠO GIÁ TRỊ - LÀM CHỦ TƯƠNG LAI',
     shortName: 'APEC',
